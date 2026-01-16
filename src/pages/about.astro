@@ -1,0 +1,406 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { getEntry } from "astro:content";
+
+// Fetch about page content from collection
+const about = await getEntry("pages", "about");
+if (!about) {
+  throw new Error("About page content not found in collections");
+}
+
+const { skills, stats, strengths } = about.data;
+const availability = about.data.availability;
+---
+
+<BaseLayout
+  title="About | Is It Vritra"
+  description="Full Stack .NET & AI Expert building enterprise solutions"
+>
+  <!-- Hero Section -->
+  <section
+    class="relative min-h-screen pt-24 pb-12 overflow-hidden bg-gradient-to-b from-white via-gray-50 to-white"
+  >
+    <!-- Decorative Elements -->
+    <div class="absolute top-24 right-12 opacity-20 animate-fade-in">
+      <div class="flex gap-2">
+        <div class="w-1 h-24 bg-black transform -rotate-12"></div>
+        <div class="w-1 h-24 bg-black transform rotate-12"></div>
+      </div>
+    </div>
+
+    <div class="relative max-w-7xl mx-auto px-6">
+      <div class="grid lg:grid-cols-12 gap-12 items-center min-h-[80vh]">
+        <!-- Left Column - Oversized Typography -->
+        <div class="lg:col-span-7 space-y-8 animate-fade-in">
+          <p
+            class="text-sm font-medium text-black/50 uppercase tracking-[0.3em]"
+          >
+            ABOUT ME
+          </p>
+
+          <h1
+            class="text-2xl md:text-4xl lg:text-6xl font-bold leading-[0.9] text-black"
+          >
+            {about.data.tagline}
+          </h1>
+
+          <div class="max-w-xl space-y-4">
+            <p class="text-lg md:text-xl text-black/70 leading-relaxed">
+              {about.data.intro}
+            </p>
+
+            <div class="flex items-center gap-3 pt-2">
+              <div class="w-12 h-0.5 bg-black"></div>
+              <p class="text-sm text-black/60">{about.data.experience}</p>
+            </div>
+          </div>
+
+          <div class="flex flex-wrap gap-4 pt-4">
+            <a
+              href="/contact"
+              class="group px-8 py-4 bg-black text-white font-semibold rounded-xl hover:bg-black/90 hover:scale-105 transition-all duration-300 inline-flex items-center gap-2"
+            >
+              Let's Work Together
+              <svg
+                class="w-4 h-4 group-hover:translate-x-1 transition-transform"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+              </svg>
+            </a>
+            <a
+              href="/articles"
+              class="px-8 py-4 bg-white border-2 border-black/10 text-black font-semibold rounded-xl hover:border-black/30 hover:scale-105 transition-all duration-300"
+            >
+              Read Articles
+            </a>
+          </div>
+        </div>
+
+        <!-- Right Column - Profile Image with Decorations -->
+        <div
+          class="lg:col-span-5 flex justify-center lg:justify-end animate-fade-in"
+          style="animation-delay: 0.2s;"
+        >
+          <div class="relative">
+            <!-- Simple shadow background -->
+            <div class="absolute -inset-8 bg-black/5 rounded-full blur-3xl">
+            </div>
+
+            <!-- Main image container -->
+            <div class="relative group">
+              <div
+                class="absolute -inset-1 bg-black/10 rounded-3xl blur-lg group-hover:bg-black/20 transition duration-500"
+              >
+              </div>
+              <img
+                src="/profile.png"
+                alt="Is It Vritra"
+                class="relative w-72 h-72 md:w-96 md:h-96 object-cover rounded-3xl border-4 border-white shadow-2xl transform group-hover:scale-105 transition duration-500"
+              />
+            </div>
+
+            <!-- Floating decorative element -->
+            {
+              availability && (
+                <div class="absolute -bottom-6 -right-6 bg-black text-white px-6 py-3 rounded-2xl shadow-xl transform rotate-3 hover:rotate-0 transition-transform">
+                  <div class="text-xs font-medium opacity-60">
+                    {availability.status}
+                  </div>
+                  <div class="text-sm font-bold">{availability.date}</div>
+                </div>
+              )
+            }
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Animated Stats Section -->
+  {
+    stats && (
+      <section class="py-16 bg-white">
+        <div class="max-w-7xl mx-auto px-6">
+          <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+            {stats.map((stat, index) => {
+              const hasSuffix = "suffix" in stat;
+              const suffix = hasSuffix ? stat.suffix : "";
+              const icon = "icon" in stat ? stat.icon : "📊";
+              return (
+                <div
+                  class="stat-card group relative p-8 bg-black hover:bg-black/90 rounded-2xl overflow-hidden transition-all duration-300 hover:scale-105 hover:shadow-2xl opacity-0"
+                  data-stat-value={stat.value}
+                  data-stat-suffix={suffix}
+                  style={`animation: fadeInUp 0.6s ease-out ${0.1 + index * 0.1}s forwards;`}
+                >
+                  {/* White accent line */}
+                  <div class="absolute top-0 left-0 right-0 h-1 bg-white/20" />
+
+                  <div class="text-4xl mb-3">{icon}</div>
+                  <div
+                    class="stat-number text-4xl md:text-5xl font-bold text-white mb-2"
+                    data-target={stat.value}
+                    data-suffix={suffix}
+                  >
+                    0{suffix}
+                  </div>
+                  <div class="text-sm text-white/70 font-medium">
+                    {stat.label}
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+    )
+  }
+
+  <!-- My Approach Section -->
+  {
+    strengths && (
+      <section class="py-24 bg-gradient-to-b from-white to-gray-50">
+        <div class="max-w-7xl mx-auto px-6">
+          <div
+            class="text-center mb-16 animate-on-scroll opacity-0"
+            data-animation="fadeIn"
+          >
+            <p class="text-sm font-medium text-black/50 uppercase tracking-[0.3em] mb-4">
+              MY APPROACH
+            </p>
+            <h2 class="text-5xl md:text-6xl font-bold text-black mb-4">
+              How I Build Different
+            </h2>
+            <p class="text-lg text-black/60 max-w-2xl mx-auto">
+              Enterprise-grade solutions with modern technologies and best
+              practices
+            </p>
+          </div>
+
+          <div class="grid md:grid-cols-2 gap-6">
+            {strengths.map((strength, index) => (
+              <div
+                class="approach-card group p-8 bg-black hover:bg-black/90 rounded-2xl transition-all duration-500 hover:scale-[1.02] hover:shadow-2xl opacity-0 animate-on-scroll"
+                data-animation="fadeInUp"
+                style={`animation-delay: ${0.1 + index * 0.1}s;`}
+              >
+                <div class="flex items-start gap-5">
+                  <div class="flex-shrink-0 w-16 h-16 bg-white/10 hover:bg-white/20 rounded-2xl flex items-center justify-center text-white transform group-hover:scale-110 group-hover:rotate-6 transition-all duration-300">
+                    <span set:html={strength.icon} />
+                  </div>
+                  <div class="flex-1">
+                    <h3 class="text-xl font-bold mb-3 text-white">
+                      {strength.title}
+                    </h3>
+                    <p class="text-white/80 leading-relaxed">
+                      {strength.description}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+    )
+  }
+
+  <!-- Skills Section - Clean Grid -->
+  {
+    skills && (
+      <section class="py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-6">
+          <div
+            class="text-center mb-16 animate-on-scroll opacity-0"
+            data-animation="fadeIn"
+          >
+            <p class="text-sm font-medium text-black/50 uppercase tracking-[0.3em] mb-4">
+              EXPERTISE
+            </p>
+            <h2 class="text-4xl md:text-5xl font-bold text-black">
+              Technical Skills
+            </h2>
+          </div>
+
+          {/* Uniform 2-Column Grid */}
+          <div class="grid md:grid-cols-2 gap-6">
+            {skills.map((skillGroup, index) => {
+              // Handle union type: skills can be string[] or { category, items }[]
+              if (typeof skillGroup === "string") {
+                return null; // Skip string items if they exist
+              }
+              return (
+                <div
+                  class="skill-card group p-10 bg-black rounded-2xl hover:shadow-2xl transition-all duration-500 opacity-0 animate-on-scroll border border-white/5 hover:border-white/10"
+                  data-animation="fadeInUp"
+                  style={`animation-delay: ${0.1 + index * 0.1}s;`}
+                >
+                  <div class="flex items-center justify-between mb-6">
+                    <h3 class="text-2xl font-bold text-white">
+                      {skillGroup.category}
+                    </h3>
+                    <div class="text-3xl opacity-30">
+                      {skillGroup.category === "Backend" && "⚙️"}
+                      {skillGroup.category === "Cloud" && "☁️"}
+                      {skillGroup.category === "AI/ML" && "🤖"}
+                      {skillGroup.category === "Frontend" && "💻"}
+                    </div>
+                  </div>
+                  <div class="flex flex-wrap gap-2.5">
+                    {skillGroup.items.map((item, itemIndex) => (
+                      <span
+                        class="skill-pill px-4 py-2.5 bg-white/10 hover:bg-white/20 rounded-lg text-sm text-white font-medium transition-all duration-300 hover:scale-105 cursor-default border border-white/5"
+                        style={`animation-delay: ${index * 0.1 + itemIndex * 0.05}s;`}
+                      >
+                        {item}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+    )
+  }
+
+  <!-- CTA Section -->
+  <section class="py-24 bg-black relative overflow-hidden">
+    <div class="relative max-w-4xl mx-auto px-6 text-center">
+      <h2
+        class="text-4xl md:text-5xl font-bold text-white mb-6 animate-fade-in"
+      >
+        Ready to work together?
+      </h2>
+      <p
+        class="text-xl text-white/70 mb-8 animate-fade-in"
+        style="animation-delay: 0.1s;"
+      >
+        {
+          availability
+            ? `Available for consulting starting ${availability.date}.`
+            : "Available for consulting."
+        }
+      </p>
+      <a
+        href="/contact"
+        class="inline-block px-10 py-5 bg-white text-black font-bold rounded-xl hover:bg-gray-100 hover:scale-105 hover:shadow-2xl transition-all duration-300 animate-fade-in"
+        style="animation-delay: 0.2s;"
+      >
+        Get in Touch →
+      </a>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  .animate-fade-in {
+    animation: fadeIn 0.8s ease-out forwards;
+  }
+
+  /* Scroll-triggered animations handled by script */
+  .animate-on-scroll {
+    transition: all 0.6s ease-out;
+  }
+
+  .animate-on-scroll[data-animation="fadeIn"] {
+    transform: translateY(0);
+  }
+
+  .animate-on-scroll[data-animation="fadeInUp"] {
+    transform: translateY(30px);
+  }
+</style>
+
+<script>
+  // Animated number counter
+  function animateCounter(
+    element: HTMLElement,
+    target: number,
+    suffix: string,
+    duration: number = 2000,
+  ) {
+    let current = 0;
+    const increment = target / (duration / 16);
+    const timer = setInterval(() => {
+      current += increment;
+      if (current >= target) {
+        current = target;
+        clearInterval(timer);
+      }
+      element.textContent = Math.floor(current) + suffix;
+    }, 16);
+  }
+
+  // Intersection Observer for scroll animations
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const element = entry.target as HTMLElement;
+
+          // Trigger stat counter animation
+          if (element.classList.contains("stat-card")) {
+            const numberElement = element.querySelector(
+              ".stat-number",
+            ) as HTMLElement;
+            const target = parseInt(
+              numberElement.getAttribute("data-target") || "0",
+            );
+            const suffix = numberElement.getAttribute("data-suffix") || "";
+            animateCounter(numberElement, target, suffix);
+            observer.unobserve(element);
+          }
+
+          // Trigger fade-in animations
+          if (element.classList.contains("animate-on-scroll")) {
+            element.style.opacity = "1";
+            element.style.transform = "translateY(0)";
+            observer.unobserve(element);
+          }
+        }
+      });
+    },
+    {
+      threshold: 0.2,
+      rootMargin: "0px 0px -100px 0px",
+    },
+  );
+
+  // Observe all animated elements
+  document.addEventListener("DOMContentLoaded", () => {
+    const statCards = document.querySelectorAll(".stat-card");
+    const scrollElements = document.querySelectorAll(".animate-on-scroll");
+
+    statCards.forEach((card) => observer.observe(card));
+    scrollElements.forEach((el) => observer.observe(el));
+  });
+</script>
