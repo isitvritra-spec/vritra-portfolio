@@ -1,0 +1,72 @@
+<!DOCTYPE html><html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><title>Entire Caching Strategy will be replaced by this .NET 9 Feature</title><style>
+      * {
+        font-family: Georgia, Cambria, "Times New Roman", Times, serif;
+      }
+      html, body {
+        margin: 0;
+        padding: 0;
+      }
+      h1 {
+        font-size: 50px;
+        margin-bottom: 17px;
+        color: #333;
+      }
+      h2 {
+        font-size: 24px;
+        line-height: 1.6;
+        margin: 30px 0 0 0;
+        margin-bottom: 18px;
+        margin-top: 33px;
+        color: #333;
+      }
+      h3 {
+        font-size: 30px;
+        margin: 10px 0 20px 0;
+        color: #333;
+      }
+      header {
+        width: 640px;
+        margin: auto;
+      }
+      section {
+        width: 640px;
+        margin: auto;
+      }
+      section p {
+        margin-bottom: 27px;
+        font-size: 20px;
+        line-height: 1.6;
+        color: #333;
+      }
+      section img {
+        max-width: 640px;
+      }
+      footer {
+        padding: 0 20px;
+        margin: 50px 0;
+        text-align: center;
+        font-size: 12px;
+      }
+      .aspectRatioPlaceholder {
+        max-width: auto !important;
+        max-height: auto !important;
+      }
+      .aspectRatioPlaceholder-fill {
+        padding-bottom: 0 !important;
+      }
+      header,
+      section[data-field=subtitle],
+      section[data-field=description] {
+        display: none;
+      }
+      </style></head><body><article class="h-entry">
+<header>
+<h1 class="p-name">Entire Caching Strategy will be replaced by this .NET 9 Feature</h1>
+</header>
+<section data-field="subtitle" class="p-summary">
+Hybrid cache in production
+</section>
+<section data-field="body" class="e-content">
+<section name="1dc2" class="section section--body section--first section--last"><div class="section-divider"><hr class="section-divider"></div><div class="section-content"><div class="section-inner sectionLayout--outsetColumn"><figure name="002e" id="002e" class="graf graf--figure graf--layoutOutsetCenter graf--leading"><img class="graf-image" data-image-id="0*-r1sGMIsMhDJnHRW" data-width="1200" data-height="675" data-is-featured="true" src="https://cdn-images-1.medium.com/max/1200/0*-r1sGMIsMhDJnHRW"></figure></div><div class="section-inner sectionLayout--insetColumn"><h3 name="c653" id="c653" class="graf graf--h3 graf-after--figure graf--title"><strong class="markup--strong markup--h3-strong">Entire Caching Strategy will be replaced by this </strong>.NET 9 Feature</h3><h4 name="51db" id="51db" class="graf graf--h4 graf-after--h3 graf--subtitle">Hybrid cache in production</h4><p name="bca7" id="bca7" class="graf graf--p graf-after--h4">You knew that I worked with the Portfolio investment project, right? So, every time a user opens their dashboard, our app hits the database to fetch stock prices, calculate portfolio values, and display transaction history.</p><p name="81a3" id="81a3" class="graf graf--p graf-after--p">With 10,000 users checking their portfolios multiple times a day, your database is in cry-mode like babies, and your cloud bill LOL...</p><figure name="5747" id="5747" class="graf graf--figure graf-after--p"><img class="graf-image" data-image-id="1*9R4PF-FgDBJNiN87AyqEVQ.png" data-width="1728" data-height="504" src="https://cdn-images-1.medium.com/max/800/1*9R4PF-FgDBJNiN87AyqEVQ.png"></figure><p name="756a" id="756a" class="graf graf--p graf-after--figure">And that’s why we do <strong class="markup--strong markup--p-strong">Caching! </strong>And I know everybody uses that in a project. uhmm… We keep frequently used files on our desk instead of walking to the filing cabinet every time!? <em class="markup--em markup--p-em">right</em></p><p name="fccb" id="fccb" class="graf graf--p graf-after--p"><em class="markup--em markup--p-em">We kept that after a req and all other 99 reqs. will hit the Cache, not the database</em></p><p name="486e" id="486e" class="graf graf--p graf-after--p">But there is a glitch! Traditional caching meant workaround with Redis servers, managing complex configurations, and writing a lot of code lines just to store and retrieve data. But thats where the .NET 9 comes into the act..</p><h3 name="9fa1" id="9fa1" class="graf graf--h3 graf-after--p">Performance Score</h3><p name="bb93" id="bb93" class="graf graf--p graf-after--h3">We were working on something that need us to recheck our Cache implementation and that time we found something, something very interesting and we ended up with our API performance by <strong class="markup--strong markup--p-strong">18x times</strong> — from 1,370 requests per second to 25,798 RPS.</p><blockquote name="2a46" id="2a46" class="graf graf--pullquote graf-after--p">Same code, same server, just one change.</blockquote><p name="9559" id="9559" class="graf graf--p graf-after--pullquote">The change was switching to the <strong class="markup--strong markup--p-strong">.Net9’s </strong>new caching approach LOL,</p><h3 name="5de8" id="5de8" class="graf graf--h3 graf-after--p">Meet HybridCache</h3><figure name="8aa8" id="8aa8" class="graf graf--figure graf-after--h3"><img class="graf-image" data-image-id="1*-C9Z1kKMRYtOtBm5UaIoPg.png" data-width="1191" data-height="190" src="https://cdn-images-1.medium.com/max/800/1*-C9Z1kKMRYtOtBm5UaIoPg.png"></figure><p name="8355" id="8355" class="graf graf--p graf-after--figure">idk but Microsoft introduce this quitly… something called <strong class="markup--strong markup--p-strong">HybridCache</strong> that makes Redis setup look like using a flip phone in 2024.</p><p name="04a6" id="04a6" class="graf graf--p graf-after--p">This is how traditional Cache works basically —</p><ul class="postList"><li name="8769" id="8769" class="graf graf--li graf-after--p">Set up a Redis server</li><li name="fa80" id="fa80" class="graf graf--li graf-after--li">Write 20+ lines of configuration</li><li name="eefc" id="eefc" class="graf graf--li graf-after--li">Handle serialization/deserialization</li><li name="6bc4" id="6bc4" class="graf graf--li graf-after--li">Manage cache invalidation</li><li name="2d59" id="2d59" class="graf graf--li graf-after--li">Debug connection issues (on loop)</li></ul><p name="f128" id="f128" class="graf graf--p graf-after--li">And <strong class="markup--strong markup--p-strong">HybridCache </strong>is like this — <em class="markup--em markup--p-em">Literally one line</em></p><pre data-code-block-mode="1" spellcheck="false" data-code-block-lang="csharp" name="e469" id="e469" class="graf graf--pre graf-after--p graf--preV2"><span class="pre--content"><span class="hljs-keyword">var</span> portfolioValue = <span class="hljs-keyword">await</span> _cache.GetOrCreateAsync(<span class="hljs-string">$&quot;portfolio_<span class="hljs-subst">{userId}</span>&quot;</span>, GetPortfolioValue);</span></pre><p name="a522" id="a522" class="graf graf--p graf-after--pre">That’s it!</p><h3 name="8272" id="8272" class="graf graf--h3 graf-after--p">How This Actually Works :)</h3><p name="b968" id="b968" class="graf graf--p graf-after--h3">Think of <strong class="markup--strong markup--p-strong">HybridCache </strong>as having two layers of memory —</p><figure name="1119" id="1119" class="graf graf--figure graf-after--p"><img class="graf-image" data-image-id="1*H4YMCOH225KJFesC05gNXQ.png" data-width="1489" data-height="844" src="https://cdn-images-1.medium.com/max/800/1*H4YMCOH225KJFesC05gNXQ.png"></figure><ol class="postList"><li name="1ed8" id="1ed8" class="graf graf--li graf-after--figure"><strong class="markup--strong markup--li-strong">Fast memory</strong> (in your app) — like your desk drawer</li><li name="746b" id="746b" class="graf graf--li graf-after--li"><strong class="markup--strong markup--li-strong">Shared memory</strong> (across servers) — like a shared filing cabinet</li></ol><p name="80fc" id="80fc" class="graf graf--p graf-after--li">When your user opens their portfolio:</p><ul class="postList"><li name="b202" id="b202" class="graf graf--li graf-after--p"><strong class="markup--strong markup--li-strong">First check:</strong> Is it in the desk drawer? Grab it instantly, ZAP! (0.001ms)</li><li name="0f85" id="0f85" class="graf graf--li graf-after--li"><strong class="markup--strong markup--li-strong">Second check</strong>: Is it in the shared cabinet? Get it quickly.. (5ms)</li><li name="27c6" id="27c6" class="graf graf--li graf-after--li"><strong class="markup--strong markup--li-strong">Last resort</strong>: Calculate from database (200ms)</li></ul><blockquote name="5ca0" id="5ca0" class="graf graf--blockquote graf-after--li">But why it’s one liner — because it handles everything automatically.. c’mon it’s <strong class="markup--strong markup--blockquote-strong">2025!</strong></blockquote><p name="a82d" id="a82d" class="graf graf--p graf-after--blockquote"><em class="markup--em markup--p-em">now, </em><strong class="markup--strong markup--p-strong"><em class="markup--em markup--p-em">last but not least</em></strong></p><h3 name="7e5f" id="7e5f" class="graf graf--h3 graf-after--p">What This Means for You?</h3><figure name="8045" id="8045" class="graf graf--figure graf-after--h3"><img class="graf-image" data-image-id="1*4pZLPTr67U4e5HGP2xeRDw.jpeg" data-width="750" data-height="409" src="https://cdn-images-1.medium.com/max/800/1*4pZLPTr67U4e5HGP2xeRDw.jpeg"></figure><p name="59c8" id="59c8" class="graf graf--p graf-after--figure">I would say in my application it is, <strong class="markup--strong markup--p-strong">Perfect for:</strong></p><ul class="postList"><li name="18dd" id="18dd" class="graf graf--li graf-after--p">User dashboards and profiles</li><li name="b6df" id="b6df" class="graf graf--li graf-after--li">Stock prices and market data</li><li name="cfb6" id="cfb6" class="graf graf--li graf-after--li">Portfolio calculations</li><li name="868a" id="868a" class="graf graf--li graf-after--li">API responses that change hourly/daily</li><li name="c7ff" id="c7ff" class="graf graf--li graf-after--li">Financial reports and analytics</li></ul><p name="6b89" id="6b89" class="graf graf--p graf-after--li">And, <strong class="markup--strong markup--p-strong">Not ideal for:</strong></p><ul class="postList"><li name="b84c" id="b84c" class="graf graf--li graf-after--p">Real-time trading data (changes every second)</li><li name="64dd" id="64dd" class="graf graf--li graf-after--li">Live chat messages</li><li name="d409" id="d409" class="graf graf--li graf-after--li">Payment processing (never cache sensitive operations)</li><li name="3716" id="3716" class="graf graf--li graf-after--li">Data that must be 100% fresh always</li></ul><p name="f11c" id="f11c" class="graf graf--p graf-after--li">and this is a one-liner for you —</p><blockquote name="a2cc" id="a2cc" class="graf graf--pullquote graf--startsWithDoubleQuote graf-after--p"><em class="markup--em markup--pullquote-em">“If your users won’t mind seeing 5-minute-old data, cache it. If they’re making million-dollar trades, don’t cache it”</em></blockquote><p name="a202" id="a202" class="graf graf--p graf-after--pullquote">Here’s how to add this —</p><h4 name="eca6" id="eca6" class="graf graf--h4 graf-after--p">Program.cs</h4><pre data-code-block-mode="1" spellcheck="false" data-code-block-lang="scss" name="2a86" id="2a86" class="graf graf--pre graf-after--h4 graf--preV2"><span class="pre--content">builder<span class="hljs-selector-class">.Services</span><span class="hljs-selector-class">.AddHybridCache</span>();</span></pre><p name="6bf8" id="6bf8" class="graf graf--p graf-after--pre"><strong class="markup--strong markup--p-strong">Controller</strong></p><pre data-code-block-mode="1" spellcheck="false" data-code-block-lang="csharp" name="a115" id="a115" class="graf graf--pre graf-after--p graf--preV2"><span class="pre--content"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">PortfolioController</span> : <span class="hljs-title">ControllerBase</span><br />{<br />    <span class="hljs-keyword">private</span> <span class="hljs-keyword">readonly</span> HybridCache _cache;<br />    <br />    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">PortfolioController</span>(<span class="hljs-params">HybridCache cache</span>)</span><br />    {<br />        _cache = cache;<br />    }<br />    <br />    [<span class="hljs-meta">HttpGet</span>]<br />    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">async</span> Task&lt;PortfolioData&gt; <span class="hljs-title">GetPortfolio</span>(<span class="hljs-params"><span class="hljs-built_in">int</span> userId</span>)</span><br />    {<br />        <span class="hljs-keyword">return</span> <span class="hljs-keyword">await</span> _cache.GetOrCreateAsync(<br />            <span class="hljs-string">$&quot;portfolio_<span class="hljs-subst">{userId}</span>&quot;</span>,<br />            <span class="hljs-keyword">async</span> _ =&gt; <span class="hljs-keyword">await</span> CalculatePortfolioValue(userId),<br />            TimeSpan.FromMinutes(<span class="hljs-number">10</span>)<br />        );<br />    }<br />}</span></pre><p name="6d84" id="6d84" class="graf graf--p graf-after--pre graf--trailing"><em class="markup--em markup--p-em">That’s literally it…</em>🖤</p></div></div></section>
+</section>
+<footer><p>By <a href="https://medium.com/@isitvritra101" class="p-author h-card">Is It Vritra - SDE I</a> on <a href="https://medium.com/p/bc18c92041c8"><time class="dt-published" datetime="2025-09-06T14:17:37.289Z">September 6, 2025</time></a>.</p><p><a href="https://medium.com/@isitvritra101/entire-caching-strategy-will-be-replaced-by-this-net-9-feature-bc18c92041c8" class="p-canonical">Canonical link</a></p><p>Exported from <a href="https://medium.com">Medium</a> on December 14, 2025.</p></footer></article></body></html>

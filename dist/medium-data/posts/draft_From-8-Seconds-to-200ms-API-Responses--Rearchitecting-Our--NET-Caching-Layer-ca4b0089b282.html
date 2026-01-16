@@ -1,0 +1,72 @@
+<!DOCTYPE html><html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><title>From 8 Seconds to 200ms API Responses: Rearchitecting Our .NET Caching Layer</title><style>
+      * {
+        font-family: Georgia, Cambria, "Times New Roman", Times, serif;
+      }
+      html, body {
+        margin: 0;
+        padding: 0;
+      }
+      h1 {
+        font-size: 50px;
+        margin-bottom: 17px;
+        color: #333;
+      }
+      h2 {
+        font-size: 24px;
+        line-height: 1.6;
+        margin: 30px 0 0 0;
+        margin-bottom: 18px;
+        margin-top: 33px;
+        color: #333;
+      }
+      h3 {
+        font-size: 30px;
+        margin: 10px 0 20px 0;
+        color: #333;
+      }
+      header {
+        width: 640px;
+        margin: auto;
+      }
+      section {
+        width: 640px;
+        margin: auto;
+      }
+      section p {
+        margin-bottom: 27px;
+        font-size: 20px;
+        line-height: 1.6;
+        color: #333;
+      }
+      section img {
+        max-width: 640px;
+      }
+      footer {
+        padding: 0 20px;
+        margin: 50px 0;
+        text-align: center;
+        font-size: 12px;
+      }
+      .aspectRatioPlaceholder {
+        max-width: auto !important;
+        max-height: auto !important;
+      }
+      .aspectRatioPlaceholder-fill {
+        padding-bottom: 0 !important;
+      }
+      header,
+      section[data-field=subtitle],
+      section[data-field=description] {
+        display: none;
+      }
+      </style></head><body><article class="h-entry">
+<header>
+<h1 class="p-name">From 8 Seconds to 200ms API Responses: Rearchitecting Our .NET Caching Layer</h1>
+</header>
+<section data-field="subtitle" class="p-summary">
+By Vritra — Draft 1
+</section>
+<section data-field="body" class="e-content">
+<section name="a37a" class="section section--body section--first section--last"><div class="section-divider"><hr class="section-divider"></div><div class="section-content"><div class="section-inner sectionLayout--insetColumn"><h3 name="cd9e" id="cd9e" class="graf graf--h3 graf--leading graf--title">From 8 Seconds to 200ms API Responses: Rearchitecting Our .NET Caching Layer</h3><h4 name="af7d" id="af7d" class="graf graf--h4 graf-after--h3 graf--subtitle">By Vritra — Draft 1</h4><p name="4c2c" id="4c2c" class="graf graf--p graf--empty graf-after--h4"><br></p><p name="1285" id="1285" class="graf graf--p graf-after--p">## Introduction: A Tale of Performance Woes</p><p name="7989" id="7989" class="graf graf--p graf-after--p">In the high-stakes world of FinTech, where every millisecond counts, I once faced a situation where our .NET application, servicing critical financial transactions, was mired in performance issues with API responses ballooning to 8 seconds. This wasn’t just a technical challenge; it was a business risk. Here, I’ll share how we rearchitected our caching layer to achieve sub-200ms responses, providing you with a roadmap to enhance your own systems.</p><p name="edc0" id="edc0" class="graf graf--p graf-after--p">### The Crisis: When Caching Fails in FinTech</p><p name="430b" id="430b" class="graf graf--p graf-after--p">Our FinTech platform, dealing with real-time stock updates and transaction processing, started experiencing delays that were unacceptable in our industry.</p><p name="48d6" id="48d6" class="graf graf--p graf-after--p">- **Symptoms:** <br> — Users facing delays in trade executions and account balance updates.<br> — Increased load on our database, risking data integrity during peak times.</p><p name="2496" id="2496" class="graf graf--p graf-after--p">- **Diagnosis:** <br> — High cache miss rates, especially during market hours when data updates were frequent.<br> — Our caching was not scaling with the demand of our financial data’s volatility.</p><p name="ad93" id="ad93" class="graf graf--p graf-after--p">### Deciding on a Cache Strategy: The FinTech Edge</p><p name="7e2c" id="7e2c" class="graf graf--p graf-after--p">In FinTech, data accuracy and speed are non-negotiable. Here’s how we evaluated our options:</p><p name="0351" id="0351" class="graf graf--p graf-after--p">#### Redis Cache: The Financial Data Guardian</p><p name="57dc" id="57dc" class="graf graf--p graf-after--p">Redis was our go-to for its reliability and speed in handling financial data:</p><p name="bd95" id="bd95" class="graf graf--p graf-after--p">```csharp<br>var redis = ConnectionMultiplexer.Connect(“localhost”);<br>var cache = redis.GetDatabase();</p><p name="1c71" id="1c71" class="graf graf--p graf-after--p">// Storing a stock price update<br>cache.StringSet(“stock:MSFT:price”, “299.35”);</p><p name="b248" id="b248" class="graf graf--p graf-after--p">// Retrieving current stock price for a trade<br>var price = cache.StringGet(“stock:MSFT:price”);<br>```</p><p name="6555" id="6555" class="graf graf--p graf-after--p">- **Pros:** <br> — Persistence for critical financial data, ensuring data availability post-reboots.<br> — Supports complex queries useful for financial computations.</p><p name="4f47" id="4f47" class="graf graf--p graf-after--p">- **Cons:** <br> — Network latency could be an issue during peak trading hours.</p><p name="f1ec" id="f1ec" class="graf graf--p graf-after--p">- **Performance in FinTech:** <br> — Initial response times cut from 8 seconds to around 600ms after optimizations.</p><p name="d95c" id="d95c" class="graf graf--p graf-after--p">#### In-Memory Cache: For Quick, Local Access</p><p name="2c91" id="2c91" class="graf graf--p graf-after--p">For certain components where speed was paramount but data loss was acceptable:</p><p name="5377" id="5377" class="graf graf--p graf-after--p">```csharp<br>var cache = new MemoryCache(new MemoryCacheOptions());<br>var options = new MemoryCacheEntryOptions().SetSlidingExpiration(TimeSpan.FromSeconds(10));</p><p name="ba66" id="ba66" class="graf graf--p graf-after--p">// Cache a user’s session data for quick access<br>cache.Set(“session:user123”, sessionData, options);</p><p name="ccf3" id="ccf3" class="graf graf--p graf-after--p">// Retrieve session data<br>if (cache.TryGetValue(“session:user123”, out var session))<br>{<br> // Use session data<br>}<br>```</p><p name="d536" id="d536" class="graf graf--p graf-after--p">- **Pros:** <br> — Ideal for user session data or temporary calculations.</p><p name="7eb4" id="7eb4" class="graf graf--p graf-after--p">- **Cons:** <br> — Not suitable for market data which needs to survive system restarts.</p><p name="7256" id="7256" class="graf graf--p graf-after--p">- **Performance:** <br> — Effective for local operations but not scalable across nodes.</p><p name="d8f3" id="d8f3" class="graf graf--p graf-after--p">#### Distributed Cache: The Scalable Choice for FinTech</p><p name="214c" id="214c" class="graf graf--p graf-after--p">We ultimately chose this for our distributed FinTech environment:</p><p name="9021" id="9021" class="graf graf--p graf-after--p">```csharp<br>services.AddDistributedRedisCache(options =&gt;<br>{<br> options.Configuration = “localhost”;<br> options.InstanceName = “FinTechCache”;<br>});</p><p name="f3b9" id="f3b9" class="graf graf--p graf-after--p">// Storing transaction data<br>var distributedCache = serviceProvider.GetService&lt;IDistributedCache&gt;();<br>await distributedCache.SetStringAsync(“transaction:12345”, “Pending”);</p><p name="0850" id="0850" class="graf graf--p graf-after--p">// Check transaction status<br>var status = await distributedCache.GetStringAsync(“transaction:12345”);<br>```</p><p name="70d3" id="70d3" class="graf graf--p graf-after--p">- **Pros:** <br> — Scalability for handling thousands of transactions per second.<br> — Ensures data consistency across different services and regions.</p><p name="589d" id="589d" class="graf graf--p graf-after--p">- **Cons:** <br> — Requires careful management of cache invalidation to ensure financial data accuracy.</p><p name="2984" id="2984" class="graf graf--p graf-after--p">- **Performance:** <br> — Achieved below 200ms, crucial for real-time financial applications.</p><p name="a2ce" id="a2ce" class="graf graf--p graf-after--p">### Mastering Cache Invalidation in FinTech</p><p name="f184" id="f184" class="graf graf--p graf-after--p">In the volatile world of finance, cache invalidation becomes critical:</p><p name="06fc" id="06fc" class="graf graf--p graf-after--p">- **Event-Driven Invalidation:**<br> ```csharp<br> // Broadcasting a stock price change<br> var factory = new ConnectionFactory() { HostName = “localhost” };<br> using(var connection = factory.CreateConnection())<br> using(var channel = connection.CreateModel())<br> {<br> channel.QueueDeclare(queue: “stockPriceUpdate”, durable: false, exclusive: false, autoDelete: false, arguments: null);<br> var body = Encoding.UTF8.GetBytes(“stock:MSFT:price”);<br> channel.BasicPublish(exchange: “”, routingKey: “stockPriceUpdate”, basicProperties: null, body: body);<br> }<br> ```</p><p name="76ff" id="76ff" class="graf graf--p graf-after--p">- **Time-Based Expiry for Less Critical Data:**<br> ```csharp<br> var cacheOptions = new MemoryCacheEntryOptions().SetAbsoluteExpiration(TimeSpan.FromMinutes(1)); // Cache expires in 1 minute<br> cache.Set(“userPreferences”, userPrefs, cacheOptions);<br> ```</p><p name="94af" id="94af" class="graf graf--p graf-after--p">- **Challenges and Solutions in FinTech:**<br> — Real-time updates during trading hours necessitated an event-driven approach.<br> — Versioned keys for transactions to avoid race conditions during updates.</p><p name="d3e5" id="d3e5" class="graf graf--p graf-after--p">### The Memory Leak Detection in Financial Systems</p><p name="8876" id="8876" class="graf graf--p graf-after--p">A memory leak in our FinTech application could lead to catastrophic downtime:</p><p name="9e9c" id="9e9c" class="graf graf--p graf-after--p">- **Detection:** <br> — Monitored memory usage during high market volatility.</p><p name="83ce" id="83ce" class="graf graf--p graf-after--p">- **Resolution:** <br> ```csharp<br> // Ensuring large financial data objects are properly managed<br> if (cache.TryGetValue(“marketData”, out var data))<br> {<br> // Process market data<br> cache.Remove(“marketData”); // Clear after use<br> }<br> ```</p><p name="5c1e" id="5c1e" class="graf graf--p graf-after--p">- **Lessons:** <br> — In FinTech, every byte counts; manage your cache entries meticulously.</p><p name="2403" id="2403" class="graf graf--p graf-after--p">### FinTech Monitoring: Keeping Finance Fluid</p><p name="5d92" id="5d92" class="graf graf--p graf-after--p">For a FinTech application, monitoring is not just about performance but compliance:</p><p name="3aab" id="3aab" class="graf graf--p graf-after--p">- **Metrics and Logging:**<br> ```csharp<br> var transactionCounter = new Counter&lt;int&gt;(“transactions”, “Number of transactions processed”);<br> transactionCounter.Inc();</p><p name="cfdb" id="cfdb" class="graf graf--p graf-after--p">// Setup for Prometheus metrics server<br> var metricsServer = new MetricsServer(options =&gt; options.Port = 5000);<br> metricsServer.Start();<br> ```</p><p name="9bcb" id="9bcb" class="graf graf--p graf-after--p">- **Setting Alerts:** <br> — Alerts for transaction throughput, latency, and cache hit rates.</p><p name="186b" id="186b" class="graf graf--p graf-after--p">- **Best Practices for FinTech:**<br> — Implement real-time auditing of financial operations.<br> — Use distributed tracing to track transactions through the system.</p><p name="f9f0" id="f9f0" class="graf graf--p graf-after--p">## Conclusion: Architecting Speed and Reliability in FinTech</p><p name="ebfa" id="ebfa" class="graf graf--p graf-after--p">In our FinTech journey, we learned that caching isn’t just about speed; it’s about ensuring data integrity and availability in real-time financial markets. Redis provided us with the persistence needed for market data, while distributed caching allowed us to scale without compromising on speed or consistency.</p><p name="864a" id="864a" class="graf graf--p graf-after--p">For you, the reader, here’s what you should consider:<br>- **Redis** for data that needs to survive system failures, like market prices or transaction logs.<br>- **In-Memory Cache** for user-specific, session-level data where speed is critical but data loss is acceptable.<br>- **Distributed Cache** for scalability in a multi-service environment, crucial for handling the volume and velocity of financial transactions.</p><p name="1dea" id="1dea" class="graf graf--p graf-after--p">By understanding these nuances, you can architect a caching layer that not only speeds up your application but also supports the stringent demands of FinTech. Remember, in this sector, performance is not just about efficiency; it’s about trust.</p><p name="16b7" id="16b7" class="graf graf--p graf-after--p graf--trailing">**Keywords:** .NET caching, FinTech performance, Redis, In-Memory cache, Distributed cache, cache invalidation, memory leaks, production monitoring, financial transactions, microservices.</p></div></div></section>
+</section>
+<footer><p><a href="https://medium.com/p/ca4b0089b282">View original.</a></p><p>Exported from <a href="https://medium.com">Medium</a> on December 14, 2025.</p></footer></article></body></html>

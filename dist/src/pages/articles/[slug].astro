@@ -1,0 +1,534 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+
+export async function getStaticPaths() {
+  const articles = await getCollection('articles');
+  return articles.map(article => ({
+    params: { slug: article.slug },
+    props: { article },
+  }));
+}
+
+const { article } = Astro.props;
+const { Content } = await article.render();
+
+const allArticles = await getCollection('articles');
+const related = allArticles
+  .filter(a => a.slug !== article.slug && a.data.category === article.data.category)
+  .slice(0, 2);
+
+const date = new Date(article.data.publishedDate);
+---
+
+<BaseLayout 
+  title={article.data.title}
+  description={article.data.excerpt}
+  type="article"
+  publishedDate={article.data.publishedDate}
+>
+  <article class="article-page">
+    <!-- Progress -->
+    <div class="progress"><div class="progress-bar"></div></div>
+    
+    <!-- Hero Section -->
+    <header class="article-hero">
+      <div class="hero-content">
+        <a href="/articles" class="back-link">← Back to Articles</a>
+        <div class="meta">
+          <span class="category">{article.data.category}</span>
+          <span class="dot">•</span>
+          <time>{date.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}</time>
+          <span class="dot">•</span>
+          <span>{article.data.readTime || '5'} min read</span>
+        </div>
+        <h1 class="title">{article.data.title}</h1>
+        <p class="excerpt">{article.data.excerpt}</p>
+        
+        <div class="author-row">
+          <img src="/profile.png" alt="Is It Vritra" class="author-img" />
+          <div class="author-info">
+            <span class="author-name">Is It Vritra</span>
+            <span class="author-role">Full Stack .NET & AI Expert</span>
+          </div>
+        </div>
+      </div>
+    </header>
+    
+    <!-- Featured Image - Full Width -->
+    {article.data.image && (
+      <div class="featured-image-section">
+        <div class="featured-image-wrapper">
+          <img src={article.data.image} alt={article.data.title} class="featured-image" />
+        </div>
+      </div>
+    )}
+    
+    <!-- Content -->
+    <div class="article-body">
+      <div class="prose-wrapper">
+        <div class="prose">
+          <Content />
+        </div>
+      </div>
+    </div>
+    
+    <!-- Share Section -->
+    <div class="share-section">
+      <div class="share-inner">
+        <span class="share-label">Share this article</span>
+        <div class="share-btns">
+          <button class="share-btn" data-type="twitter">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+          </button>
+          <button class="share-btn" data-type="linkedin">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+          </button>
+          <button class="share-btn" data-type="copy">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Related -->
+    {related.length > 0 && (
+      <section class="related">
+        <div class="related-inner">
+          <h2>Continue Reading</h2>
+          <div class="related-grid">
+            {related.map(r => (
+              <a href={`/articles/${r.slug}`} class="related-card">
+                {r.data.image && <img src={r.data.image} alt={r.data.title} class="related-img" />}
+                <div class="related-content">
+                  <span class="related-cat">{r.data.category}</span>
+                  <h3>{r.data.title}</h3>
+                  <span class="related-meta">{r.data.readTime || '5'} min read</span>
+                </div>
+              </a>
+            ))}
+          </div>
+        </div>
+      </section>
+    )}
+  </article>
+</BaseLayout>
+
+<style>
+  .article-page {
+    padding-top: 64px;
+    background: #F7F7F5;
+  }
+  
+  /* Progress */
+  .progress {
+    position: fixed;
+    top: 64px;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: transparent;
+    z-index: 50;
+  }
+  
+  .progress-bar {
+    height: 100%;
+    background: linear-gradient(90deg, #E85D04, #F97316);
+    width: 0;
+    transition: width 0.1s linear;
+  }
+  
+  /* Hero */
+  .article-hero {
+    padding: 5rem 2rem 4rem;
+    background: #FFFFFF;
+    border-bottom: 1px solid #E0E0DC;
+  }
+  
+  .hero-content {
+    max-width: 720px;
+    margin: 0 auto;
+  }
+  
+  .back-link {
+    display: inline-flex;
+    align-items: center;
+    font-size: 0.875rem;
+    color: #6B6B6B;
+    text-decoration: none;
+    margin-bottom: 2.5rem;
+    transition: color 0.2s;
+  }
+  
+  .back-link:hover {
+    color: #E85D04;
+  }
+  
+  .meta {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: 0.875rem;
+    color: #6B6B6B;
+    margin-bottom: 1.5rem;
+  }
+  
+  .category {
+    color: #E85D04;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-size: 0.75rem;
+    background: rgba(232, 93, 4, 0.08);
+    padding: 0.35rem 0.75rem;
+    border-radius: 100px;
+  }
+  
+  .dot { color: #D0D0CC; }
+  
+  .title {
+    font-size: 3rem;
+    font-weight: 700;
+    line-height: 1.15;
+    letter-spacing: -0.03em;
+    color: #1A1A1A;
+    margin-bottom: 1.25rem;
+  }
+  
+  .excerpt {
+    font-size: 1.25rem;
+    color: #6B6B6B;
+    line-height: 1.6;
+    margin-bottom: 2rem;
+  }
+  
+  .author-row {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid #EFEFE9;
+  }
+  
+  .author-img {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+  
+  .author-info {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .author-name {
+    font-weight: 600;
+    color: #1A1A1A;
+    font-size: 0.9375rem;
+  }
+  
+  .author-role {
+    font-size: 0.8125rem;
+    color: #6B6B6B;
+  }
+  
+  /* Featured Image - Full Bleed Style */
+  .featured-image-section {
+    background: #1A1A1A;
+    padding: 3rem 0;
+  }
+  
+  .featured-image-wrapper {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+  
+  .featured-image {
+    width: 100%;
+    border-radius: 16px;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+  }
+  
+  /* Body */
+  .article-body {
+    padding: 4rem 2rem 5rem;
+    background: #FFFFFF;
+  }
+  
+  .prose-wrapper {
+    max-width: 680px;
+    margin: 0 auto;
+  }
+  
+  .prose {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: 1.125rem;
+    line-height: 1.9;
+    color: #1A1A1A;
+  }
+  
+  .prose :global(h2) {
+    font-family: 'Inter', -apple-system, sans-serif;
+    font-size: 1.75rem;
+    font-weight: 700;
+    margin-top: 3rem;
+    margin-bottom: 1rem;
+    letter-spacing: -0.02em;
+    color: #1A1A1A;
+  }
+  
+  .prose :global(h3) {
+    font-family: 'Inter', -apple-system, sans-serif;
+    font-size: 1.375rem;
+    font-weight: 600;
+    margin-top: 2.5rem;
+    margin-bottom: 0.75rem;
+    color: #1A1A1A;
+  }
+  
+  .prose :global(p) {
+    margin-bottom: 1.75em;
+  }
+  
+  .prose :global(a) {
+    color: #E85D04;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+    text-decoration-color: rgba(232, 93, 4, 0.3);
+    transition: text-decoration-color 0.2s;
+  }
+  
+  .prose :global(a:hover) {
+    text-decoration-color: #E85D04;
+  }
+  
+  .prose :global(ul),
+  .prose :global(ol) {
+    margin-bottom: 1.75em;
+    padding-left: 1.5em;
+  }
+  
+  .prose :global(li) { margin-bottom: 0.5em; }
+  
+  .prose :global(blockquote) {
+    border-left: 4px solid #E85D04;
+    padding-left: 1.5em;
+    margin: 2em 0;
+    font-style: italic;
+    color: #6B6B6B;
+    background: #FAFAF8;
+    padding: 1.5em;
+    border-radius: 0 8px 8px 0;
+  }
+  
+  .prose :global(code) {
+    font-family: 'JetBrains Mono', 'SF Mono', 'Fira Code', monospace;
+    font-size: 0.875em;
+    background: #EFEFE9;
+    padding: 0.2em 0.4em;
+    border-radius: 4px;
+    color: #D93025;
+  }
+  
+  .prose :global(pre) {
+    background: #1A1A1A;
+    color: #F7F7F5;
+    padding: 1.5em;
+    border-radius: 12px;
+    overflow-x: auto;
+    margin: 2em 0;
+    border: 1px solid #333;
+  }
+  
+  .prose :global(pre code) {
+    background: none;
+    padding: 0;
+    font-size: 0.875rem;
+    color: inherit;
+  }
+  
+  .prose :global(img) {
+    max-width: 100%;
+    border-radius: 12px;
+    margin: 2em 0;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+  }
+  
+  .prose :global(hr) {
+    border: none;
+    height: 1px;
+    background: #E0E0DC;
+    margin: 3rem 0;
+  }
+  
+  /* Share */
+  .share-section {
+    padding: 2rem;
+    background: #FFFFFF;
+    border-top: 1px solid #EFEFE9;
+  }
+  
+  .share-inner {
+    max-width: 680px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .share-label {
+    font-size: 0.9375rem;
+    color: #6B6B6B;
+    font-weight: 500;
+  }
+  
+  .share-btns {
+    display: flex;
+    gap: 0.5rem;
+  }
+  
+  .share-btn {
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #EFEFE9;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.2s;
+    color: #6B6B6B;
+  }
+  
+  .share-btn:hover {
+    background: #1A1A1A;
+    color: #FFFFFF;
+    transform: translateY(-2px);
+  }
+  
+  /* Related */
+  .related {
+    padding: 5rem 2rem;
+    background: #F7F7F5;
+  }
+  
+  .related-inner {
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+  
+  .related h2 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 2rem;
+    color: #1A1A1A;
+  }
+  
+  .related-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+  
+  .related-card {
+    background: #FFFFFF;
+    border-radius: 16px;
+    overflow: hidden;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #E0E0DC;
+  }
+  
+  .related-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+    border-color: transparent;
+  }
+  
+  .related-img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+  }
+  
+  .related-content {
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+  }
+  
+  .related-cat {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #E85D04;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 0.75rem;
+  }
+  
+  .related-card h3 {
+    font-size: 1.125rem;
+    font-weight: 600;
+    flex: 1;
+    color: #1A1A1A;
+    line-height: 1.4;
+    transition: color 0.2s;
+    margin-bottom: 0.75rem;
+  }
+  
+  .related-card:hover h3 { color: #E85D04; }
+  
+  .related-meta {
+    font-size: 0.8125rem;
+    color: #999999;
+  }
+  
+  @media (max-width: 768px) {
+    .title { font-size: 2rem; }
+    .excerpt { font-size: 1.125rem; }
+    .related-grid { grid-template-columns: 1fr; }
+    .share-inner { flex-direction: column; gap: 1rem; }
+    .featured-image-section { padding: 2rem 0; }
+    .article-hero { padding: 3rem 1.5rem 3rem; }
+  }
+</style>
+
+<script>
+  // Progress bar
+  const bar = document.querySelector('.progress-bar') as HTMLElement;
+  const body = document.querySelector('.article-body');
+  
+  if (bar && body) {
+    window.addEventListener('scroll', () => {
+      const top = body.getBoundingClientRect().top + window.scrollY - 200;
+      const height = body.clientHeight;
+      const scrolled = window.scrollY - top;
+      const progress = Math.min(Math.max(scrolled / height * 100, 0), 100);
+      bar.style.width = `${progress}%`;
+    });
+  }
+  
+  // Share
+  const url = window.location.href;
+  const title = document.title;
+  
+  document.querySelectorAll('.share-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const type = (btn as HTMLElement).dataset.type;
+      if (type === 'twitter') window.open(`https://twitter.com/intent/tweet?url=${encodeURIComponent(url)}&text=${encodeURIComponent(title)}`, '_blank');
+      if (type === 'linkedin') window.open(`https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(url)}`, '_blank');
+      if (type === 'copy') {
+        navigator.clipboard.writeText(url);
+        const svg = btn.innerHTML;
+        btn.innerHTML = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>';
+        setTimeout(() => btn.innerHTML = svg, 2000);
+      }
+    });
+  });
+</script>

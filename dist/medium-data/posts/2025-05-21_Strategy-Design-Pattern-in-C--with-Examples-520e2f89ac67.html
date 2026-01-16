@@ -1,0 +1,72 @@
+<!DOCTYPE html><html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><title>Strategy Design Pattern in C# with Examples</title><style>
+      * {
+        font-family: Georgia, Cambria, "Times New Roman", Times, serif;
+      }
+      html, body {
+        margin: 0;
+        padding: 0;
+      }
+      h1 {
+        font-size: 50px;
+        margin-bottom: 17px;
+        color: #333;
+      }
+      h2 {
+        font-size: 24px;
+        line-height: 1.6;
+        margin: 30px 0 0 0;
+        margin-bottom: 18px;
+        margin-top: 33px;
+        color: #333;
+      }
+      h3 {
+        font-size: 30px;
+        margin: 10px 0 20px 0;
+        color: #333;
+      }
+      header {
+        width: 640px;
+        margin: auto;
+      }
+      section {
+        width: 640px;
+        margin: auto;
+      }
+      section p {
+        margin-bottom: 27px;
+        font-size: 20px;
+        line-height: 1.6;
+        color: #333;
+      }
+      section img {
+        max-width: 640px;
+      }
+      footer {
+        padding: 0 20px;
+        margin: 50px 0;
+        text-align: center;
+        font-size: 12px;
+      }
+      .aspectRatioPlaceholder {
+        max-width: auto !important;
+        max-height: auto !important;
+      }
+      .aspectRatioPlaceholder-fill {
+        padding-bottom: 0 !important;
+      }
+      header,
+      section[data-field=subtitle],
+      section[data-field=description] {
+        display: none;
+      }
+      </style></head><body><article class="h-entry">
+<header>
+<h1 class="p-name">Strategy Design Pattern in C# with Examples</h1>
+</header>
+<section data-field="subtitle" class="p-summary">
+Understanding the Strategy Design Pattern.
+</section>
+<section data-field="body" class="e-content">
+<section name="ca43" class="section section--body section--first section--last"><div class="section-divider"><hr class="section-divider"></div><div class="section-content"><div class="section-inner sectionLayout--insetColumn"><figure name="3af0" id="3af0" class="graf graf--figure graf--leading"><img class="graf-image" data-image-id="1*n7QZ_zskJDmSQUh4COiFCQ.png" data-width="639" data-height="358" data-is-featured="true" src="https://cdn-images-1.medium.com/max/800/1*n7QZ_zskJDmSQUh4COiFCQ.png"></figure><h3 name="0a55" id="0a55" class="graf graf--h3 graf-after--figure graf--title">Strategy Design Pattern in C# with Examples</h3><h4 name="867b" id="867b" class="graf graf--h4 graf-after--h3 graf--subtitle">Understanding the Strategy Design Pattern.</h4><p name="e294" id="e294" class="graf graf--p graf-after--h4">In the world of software development, design patterns are essential tools that help developers solve common problems in a standardized way. One such pattern is the <strong class="markup--strong markup--p-strong">Strategy Design Pattern</strong>. This pattern is particularly useful when you need to define a family of algorithms, encapsulate each one, and make them interchangeable. Let’s dive into what the Strategy Design Pattern is, why it’s useful, and how you can implement it in your projects.</p><h3 name="6448" id="6448" class="graf graf--h3 graf-after--p">What is the Strategy Design Pattern?</h3><p name="0418" id="0418" class="graf graf--p graf-after--h3">The Strategy Design Pattern falls under the category of behavioural design patterns. It enables an algorithm’s behaviour to be selected at runtime. Instead of implementing a single algorithm directly, code receives run-time instructions as to which in a family of algorithms to use.</p><h3 name="b021" id="b021" class="graf graf--h3 graf-after--p">Why Use the Strategy Design Pattern?</h3><p name="9036" id="9036" class="graf graf--p graf-after--h3">The primary benefits of using the Strategy Design Pattern include:</p><ol class="postList"><li name="fad1" id="fad1" class="graf graf--li graf-after--p"><strong class="markup--strong markup--li-strong">Flexibility</strong>: It allows you to change the algorithm or strategy being used without altering the code that uses the algorithm.</li><li name="904c" id="904c" class="graf graf--li graf-after--li"><strong class="markup--strong markup--li-strong">Reusability</strong>: By encapsulating algorithms separately, you can reuse them across different parts of your application.</li><li name="77b4" id="77b4" class="graf graf--li graf-after--li"><strong class="markup--strong markup--li-strong">Maintainability</strong>: It promotes cleaner code by adhering to the Single Responsibility Principle, making your code easier to maintain and extend.</li></ol><h3 name="0eee" id="0eee" class="graf graf--h3 graf-after--li">How to Implement the Strategy Design Pattern</h3><p name="2502" id="2502" class="graf graf--p graf-after--h3">Let’s break down the implementation of the Strategy Design Pattern with a simple example. Suppose we are developing a flight simulator that supports multiple flying methods (e.g., Flapping like a bird, Jet Engine powered, and Warp Speed).</p><h4 name="b0e5" id="b0e5" class="graf graf--h4 graf-after--p">Step 1: Define the Strategy Interface</h4><p name="1515" id="1515" class="graf graf--p graf-after--h4">First, we define an interface that all payment strategies will implement.</p><pre data-code-block-mode="1" spellcheck="false" data-code-block-lang="csharp" name="b0c1" id="b0c1" class="graf graf--pre graf-after--p graf--preV2"><span class="pre--content"><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title">IFlyingStrategy</span><br />{<br />    <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">Fly</span>()</span>;<br />}</span></pre><h4 name="35fc" id="35fc" class="graf graf--h4 graf-after--pre">Step 2: Implement Concrete Strategies</h4><p name="c41f" id="c41f" class="graf graf--p graf-after--h4">Next, we create concrete classes that implement the IPaymentStrategy interface.</p><pre data-code-block-mode="1" spellcheck="false" data-code-block-lang="csharp" name="a74a" id="a74a" class="graf graf--pre graf-after--p graf--preV2"><span class="pre--content"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">Bird</span> : <span class="hljs-title">IFlyingStrategy</span><br />{<br />    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">Fly</span>()</span><br />    {<br />        Console.WriteLine(<span class="hljs-string">&quot;Flying like a bird&quot;</span>);<br />    }<br />}</span></pre><pre data-code-block-mode="1" spellcheck="false" data-code-block-lang="csharp" name="4b71" id="4b71" class="graf graf--pre graf-after--pre graf--preV2"><span class="pre--content"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">Plane</span> : <span class="hljs-title">IFlyingStrategy</span><br />{<br />    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">Fly</span>()</span><br />    {<br />        Console.WriteLine(<span class="hljs-string">&quot;Flying using 21st century aviation fuel&quot;</span>);<br />    }<br />}<br /><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">StarShip</span> : <span class="hljs-title">IFlyingStrategy</span><br />{<br />    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">Fly</span>()</span><br />    {<br />        Console.WriteLine(<span class="hljs-string">&quot;Flying using warp engines&quot;</span>);<br />    }<br />}</span></pre><h4 name="79cd" id="79cd" class="graf graf--h4 graf-after--pre">Step 3: Create the Context Class</h4><p name="4602" id="4602" class="graf graf--p graf-after--h4">The context class uses a IFlyingStrategy to perform the payment.</p><pre data-code-block-mode="1" spellcheck="false" data-code-block-lang="csharp" name="8e54" id="8e54" class="graf graf--pre graf-after--p graf--preV2"><span class="pre--content"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">FlyContext</span><br />{<br />    <span class="hljs-keyword">private</span> IFlyingStrategy _flyingStrategy;<br />    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">SetPaymentStrategy</span>(<span class="hljs-params">IFlyingStrategy flyingStrategy</span>)</span><br />    {<br />        _flyingStrategy = flyingStrategy;<br />    }<br />    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">Fly</span>()</span><br />    {<br />        _flyingStrategy.Fly();<br />    }<br />}</span></pre><h4 name="83ef" id="83ef" class="graf graf--h4 graf-after--pre">Step 4: Use the Strategy Pattern</h4><p name="f6dd" id="f6dd" class="graf graf--p graf-after--h4">Finally, we use the FlyContext to fly with different strategies.</p><pre data-code-block-mode="1" spellcheck="false" data-code-block-lang="csharp" name="9572" id="9572" class="graf graf--pre graf-after--p graf--preV2"><span class="pre--content"><span class="hljs-keyword">class</span> <span class="hljs-title">Program</span><br />{<br />    <span class="hljs-function"><span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">Main</span>(<span class="hljs-params"><span class="hljs-built_in">string</span>[] args</span>)</span><br />    {<br />        FlyContext context = <span class="hljs-keyword">new</span> FlyContext();<br />        context.SetPaymentStrategy(<span class="hljs-keyword">new</span> StarShip());<br />        context.Fly();<br />        context.SetPaymentStrategy(<span class="hljs-keyword">new</span> Plane());<br />        context.Fly();<br />        context.SetPaymentStrategy(<span class="hljs-keyword">new</span> Bird());<br />        context.Fly();<br />    }<br />}</span></pre><h3 name="ac84" id="ac84" class="graf graf--h3 graf-after--pre">Conclusion</h3><p name="c963" id="c963" class="graf graf--p graf-after--h3 graf--trailing">The Strategy Design Pattern is a powerful tool that promotes flexibility, reusability, and maintainability in your code. By encapsulating algorithms and making them interchangeable, you can easily extend and modify your application without disrupting existing functionality. Whether you’re dealing with payment processing, flying machines, sorting algorithms, or any other scenario requiring dynamic behaviour, the Strategy Design Pattern can help you write cleaner and more efficient code.</p></div></div></section>
+</section>
+<footer><p>By <a href="https://medium.com/@isitvritra101" class="p-author h-card">Is It Vritra - SDE I</a> on <a href="https://medium.com/p/520e2f89ac67"><time class="dt-published" datetime="2025-05-21T04:32:45.440Z">May 21, 2025</time></a>.</p><p><a href="https://medium.com/@isitvritra101/strategy-design-pattern-in-c-with-examples-520e2f89ac67" class="p-canonical">Canonical link</a></p><p>Exported from <a href="https://medium.com">Medium</a> on December 14, 2025.</p></footer></article></body></html>

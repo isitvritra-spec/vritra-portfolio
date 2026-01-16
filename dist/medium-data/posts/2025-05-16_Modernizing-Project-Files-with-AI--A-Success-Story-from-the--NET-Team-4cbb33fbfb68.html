@@ -1,0 +1,72 @@
+<!DOCTYPE html><html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><title>Modernizing Project Files with AI: A Success Story from the .NET Team</title><style>
+      * {
+        font-family: Georgia, Cambria, "Times New Roman", Times, serif;
+      }
+      html, body {
+        margin: 0;
+        padding: 0;
+      }
+      h1 {
+        font-size: 50px;
+        margin-bottom: 17px;
+        color: #333;
+      }
+      h2 {
+        font-size: 24px;
+        line-height: 1.6;
+        margin: 30px 0 0 0;
+        margin-bottom: 18px;
+        margin-top: 33px;
+        color: #333;
+      }
+      h3 {
+        font-size: 30px;
+        margin: 10px 0 20px 0;
+        color: #333;
+      }
+      header {
+        width: 640px;
+        margin: auto;
+      }
+      section {
+        width: 640px;
+        margin: auto;
+      }
+      section p {
+        margin-bottom: 27px;
+        font-size: 20px;
+        line-height: 1.6;
+        color: #333;
+      }
+      section img {
+        max-width: 640px;
+      }
+      footer {
+        padding: 0 20px;
+        margin: 50px 0;
+        text-align: center;
+        font-size: 12px;
+      }
+      .aspectRatioPlaceholder {
+        max-width: auto !important;
+        max-height: auto !important;
+      }
+      .aspectRatioPlaceholder-fill {
+        padding-bottom: 0 !important;
+      }
+      header,
+      section[data-field=subtitle],
+      section[data-field=description] {
+        display: none;
+      }
+      </style></head><body><article class="h-entry">
+<header>
+<h1 class="p-name">Modernizing Project Files with AI: A Success Story from the .NET Team</h1>
+</header>
+<section data-field="subtitle" class="p-summary">
+by Cathy, Mukund, Jackson
+</section>
+<section data-field="body" class="e-content">
+<section name="dfc7" class="section section--body section--first section--last"><div class="section-divider"><hr class="section-divider"></div><div class="section-content"><div class="section-inner sectionLayout--outsetColumn"><figure name="be1f" id="be1f" class="graf graf--figure graf--layoutOutsetCenter graf--leading"><img class="graf-image" data-image-id="1*I_VUZUhfCRTs8F0l-ZW03g.png" data-width="1610" data-height="324" data-is-featured="true" src="https://cdn-images-1.medium.com/max/1200/1*I_VUZUhfCRTs8F0l-ZW03g.png"><figcaption class="imageCaption">This blog is replica of the microsoft blog to reach my followers! Thanks</figcaption></figure></div><div class="section-inner sectionLayout--insetColumn"><h3 name="d4b2" id="d4b2" class="graf graf--h3 graf-after--figure graf--title">Modernizing Project Files with AI: A Success Story from the .NET Team</h3><h4 name="4495" id="4495" class="graf graf--h4 graf-after--h3 graf--subtitle">by <a href="https://devblogs.microsoft.com/blog/author/cathys-2" data-href="https://devblogs.microsoft.com/blog/author/cathys-2" class="markup--anchor markup--h4-anchor" rel="noopener" target="_blank">Cathy</a>, <a href="https://devblogs.microsoft.com/blog/author/mukundsharma" data-href="https://devblogs.microsoft.com/blog/author/mukundsharma" class="markup--anchor markup--h4-anchor" rel="noopener" target="_blank">Mukund</a>, <a href="https://devblogs.microsoft.com/blog/author/jschuster" data-href="https://devblogs.microsoft.com/blog/author/jschuster" class="markup--anchor markup--h4-anchor" rel="noopener" target="_blank">Jackson</a></h4><p name="c4ee" id="c4ee" class="graf graf--p graf-after--h4">At Microsoft, we are constantly exploring innovative ways to enhance our workflows, improve productivity, and ensure we have a secure supply chain that uses modern tools. One of our recent initiatives was to rebuild the .NET Framework build system by leveraging AI to automate the process. Here’s the story of how we successfully achieved this transformation.</p><h3 name="3888" id="3888" class="graf graf--h3 graf-after--p">The Problem</h3><p name="d6f6" id="d6f6" class="graf graf--p graf-after--h3">Modernizing the .NET Framework build system required converting about 300 projects from custom build files to <a href="https://learn.microsoft.com/visualstudio/msbuild/msbuild" data-href="https://learn.microsoft.com/visualstudio/msbuild/msbuild" class="markup--anchor markup--p-anchor" rel="noopener" target="_blank">MSBuild</a>, including renaming properties and updating imports. We knew this process would be both time-consuming and error prone. While some conversions were more complex than others, we knew many followed similar patterns, which presented an opportunity for automation.</p><h3 name="9a29" id="9a29" class="graf graf--h3 graf-after--p">The Experiment and Solution</h3><p name="b791" id="b791" class="graf graf--p graf-after--h3">Consequently, we explored leveraging AI to streamline these project file conversions. AI could identify recurring patterns, apply necessary modifications, improve accuracy, and reduce manual effort while accelerating the overall modernization process. Given the potential benefits, we conducted a weeklong experiment to evaluate AI’s effectiveness in automating these conversions and validating our approach.</p><p name="8a14" id="8a14" class="graf graf--p graf-after--p">We decided to experiment with two different methods of converting projects:</p><ol class="postList"><li name="2c2f" id="2c2f" class="graf graf--li graf-after--p">Copilot Chat Participant: We developed a VS Code extension that provided a Copilot Chat participant to assist in project conversions. The participant took a chat message requesting Copilot to convert a single project file and iterated with Copilot until the project successfully built. The extension added context to the prompt with manually written documentation that included details about MSBuild, the task of converting an MSBuild project, and patterns from previous conversions. It also offered Copilot a selection of tools that it could invoke. These tools provided the ability to edit files, gather additional information about the MSBuild project file and workspace, and run MSBuild. The participant would execute tools that Copilot requested and provide the results in a loop until Copilot was satisfied with the contents of the project.</li><li name="f8b4" id="f8b4" class="graf graf--li graf-after--li">Script-based Documentation and Conversions: We developed a Python script that utilizes Azure OpenAI’s GPT-4o-mini and o1-mini APIs with the following functionalities:</li></ol><ul class="postList"><li name="e09d" id="e09d" class="graf graf--li graf-after--li">Documentation Generation: The script generated comprehensive documentation that outlined the rules for conversion, including the XML structure before and after the conversion, as well as optional pseudo-code. The documentation was generated by getting the o1-mini model to infer the differences between the old .csproj and manually generated ones and then synthesize rules. A benefit of getting the language model to generate the documentation was to help other engineers onboard quicker.</li><li name="000c" id="000c" class="graf graf--li graf-after--li">Project Conversion: Based on the generated documentation, the script applied the conversion rules to a new project. It then ran MSBuild on the converted project to verify its successful execution. To save time, we asked the LLM to generate 3 different versions of the converted projects and chose the first one that was successfully built using MSBuild; this strategy reduced the overall conversion time by considering the probabilistic nature of Language Models where each new version of the converted project was usually different from the previous one.</li></ul><h3 name="39d3" id="39d3" class="graf graf--h3 graf-after--li">Results</h3><p name="4b83" id="4b83" class="graf graf--p graf-after--h3">Both implementations yielded promising results converting project files. When tested on files that had already been converted (undoing the manual conversion and converting it with AI), particularly files under 200 lines of code, they performed well and produced projects that built, and often even made important fixes that were missing from manual conversions. However, occasionally, a one-shot conversion often missed key details like renaming properties or updating imports correctly. However, this was still a great starting point for an engineer to manually review and fix.</p><p name="e8e4" id="e8e4" class="graf graf--p graf-after--p">The Copilot Chat participant’s major drawback was that it worked on one project at a time and had slow generation. For basic projects, it ended up taking a similar amount of time to generate the project and review it compared to manually converting the file. For this reason, we decided to move forward with the script instead.</p><p name="12cc" id="12cc" class="graf graf--p graf-after--p">The script-based approach yielded similar results for each individual conversion but more importantly was able to convert multiple projects at once. While the AI still made mistakes and some manual reviews and cleanup were still necessary, it was much easier to convert several projects at once and review the ones that failed to build. This led to noticeable improvements in project conversion velocity.</p><p name="c360" id="c360" class="graf graf--p graf-after--p">After AI conversions were introduced, the project burndown speed increased drastically, and we were able to reach the ambitious goal well ahead of schedule. We were able to convert simple projects quickly and easily with AI, while manually converting complex and unique projects.</p><figure name="e0fb" id="e0fb" class="graf graf--figure graf-after--p"><img class="graf-image" data-image-id="0*L-i4DROkgknjZOId.png" data-width="1118" data-height="742" src="https://cdn-images-1.medium.com/max/800/0*L-i4DROkgknjZOId.png"></figure><h3 name="74c2" id="74c2" class="graf graf--h3 graf-after--figure">Cost</h3><p name="0b3d" id="0b3d" class="graf graf--p graf-after--h3">Running experiments and conversions using Azure OpenAI’s GPT-4o mini and o1-mini models cost less than $1; this was another win as apart from the speed at which we converted projects, the language model usage wasn’t cost prohibitive.</p><figure name="91fd" id="91fd" class="graf graf--figure graf-after--p"><img class="graf-image" data-image-id="0*1BOVY8pzJ9Cc_Q7-.png" data-width="1523" data-height="772" src="https://cdn-images-1.medium.com/max/800/0*1BOVY8pzJ9Cc_Q7-.png"></figure><h3 name="518e" id="518e" class="graf graf--h3 graf-after--figure">Conclusion</h3><p name="dd4b" id="dd4b" class="graf graf--p graf-after--h3">We dedicated two weeks of a couple of engineers’ time to experiment using LLMs to automate converting MSBuild projects to the new build process and had great success. We encountered some issues with MSBuild’s verbosity and error messages when implementing agentic behavior, and the LLMs occasionally generated imperfect projects that required manual intervention. Despite this, utilizing AI increased our velocity significantly and enabled us to complete our goal ahead of an ambitious timeline.</p><p name="1b28" id="1b28" class="graf graf--p graf-after--p graf--trailing">Since this project, we’ve learned of other possible solutions that we could have explored. If we were to do this again, we would make use of a custom Model Context Protocol server in VS Code such as described <a href="https://code.visualstudio.com/docs/copilot/chat/mcp-servers" data-href="https://code.visualstudio.com/docs/copilot/chat/mcp-servers" class="markup--anchor markup--p-anchor" rel="noopener" target="_blank">here</a> to invoke the conversion process and give the model even more context for the conversions.</p></div></div></section>
+</section>
+<footer><p>By <a href="https://medium.com/@isitvritra101" class="p-author h-card">Is It Vritra - SDE I</a> on <a href="https://medium.com/p/4cbb33fbfb68"><time class="dt-published" datetime="2025-05-16T20:26:28.606Z">May 16, 2025</time></a>.</p><p><a href="https://medium.com/@isitvritra101/modernizing-project-files-with-ai-a-success-story-from-the-net-team-4cbb33fbfb68" class="p-canonical">Canonical link</a></p><p>Exported from <a href="https://medium.com">Medium</a> on December 14, 2025.</p></footer></article></body></html>

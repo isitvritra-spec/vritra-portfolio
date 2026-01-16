@@ -1,0 +1,72 @@
+<!DOCTYPE html><html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><title>.NET 9 Feature That Will Kill Node.js</title><style>
+      * {
+        font-family: Georgia, Cambria, "Times New Roman", Times, serif;
+      }
+      html, body {
+        margin: 0;
+        padding: 0;
+      }
+      h1 {
+        font-size: 50px;
+        margin-bottom: 17px;
+        color: #333;
+      }
+      h2 {
+        font-size: 24px;
+        line-height: 1.6;
+        margin: 30px 0 0 0;
+        margin-bottom: 18px;
+        margin-top: 33px;
+        color: #333;
+      }
+      h3 {
+        font-size: 30px;
+        margin: 10px 0 20px 0;
+        color: #333;
+      }
+      header {
+        width: 640px;
+        margin: auto;
+      }
+      section {
+        width: 640px;
+        margin: auto;
+      }
+      section p {
+        margin-bottom: 27px;
+        font-size: 20px;
+        line-height: 1.6;
+        color: #333;
+      }
+      section img {
+        max-width: 640px;
+      }
+      footer {
+        padding: 0 20px;
+        margin: 50px 0;
+        text-align: center;
+        font-size: 12px;
+      }
+      .aspectRatioPlaceholder {
+        max-width: auto !important;
+        max-height: auto !important;
+      }
+      .aspectRatioPlaceholder-fill {
+        padding-bottom: 0 !important;
+      }
+      header,
+      section[data-field=subtitle],
+      section[data-field=description] {
+        display: none;
+      }
+      </style></head><body><article class="h-entry">
+<header>
+<h1 class="p-name">.NET 9 Feature That Will Kill Node.js</h1>
+</header>
+<section data-field="subtitle" class="p-summary">
+I deployed a .NET application that starts in 12 milliseconds, uses 8MB of memory, and runs faster than the equivalent Node.js version
+</section>
+<section data-field="body" class="e-content">
+<section name="ce5c" class="section section--body section--first"><div class="section-divider"><hr class="section-divider"></div><div class="section-content"><div class="section-inner sectionLayout--insetColumn"><figure name="6203" id="6203" class="graf graf--figure graf--leading"><img class="graf-image" data-image-id="1*Lo7RpFsENO-vI0vOA0jQJA.jpeg" data-width="1166" data-height="590" data-is-featured="true" src="https://cdn-images-1.medium.com/max/800/1*Lo7RpFsENO-vI0vOA0jQJA.jpeg"></figure><h3 name="8cf6" id="8cf6" class="graf graf--h3 graf-after--figure graf--title">.NET 9 Feature That Will Kill Node.js</h3><h4 name="82e9" id="82e9" class="graf graf--h4 graf-after--h3 graf--subtitle"><em class="markup--em markup--h4-em">I deployed a .NET application that starts in 12 milliseconds, uses 8MB of memory, and runs faster than the equivalent Node.js version</em></h4><p name="5cf0" id="5cf0" class="graf graf--p graf-after--h4">Last weekend (9th of August), I did something that would have been impossible two years ago.</p><p name="0c1c" id="0c1c" class="graf graf--p graf-after--p"><em class="markup--em markup--p-em">I deployed a .NET application that starts in 12 milliseconds, uses 8MB of memory, and runs faster than the equivalent Node.js version</em></p><p name="10e7" id="10e7" class="graf graf--p graf-after--p"><strong class="markup--strong markup--p-strong">Yes you heard me right… let me repeat</strong></p><p name="2d67" id="2d67" class="graf graf--p graf-after--p"><em class="markup--em markup--p-em">I DEPLOYED A .NET APPLICATION THAT STARTS IN 12 MILLISECONDS, USES 8MB OF MEMORY, AND RUNS FASTER THAN THE EQUIVALENT NODE.JS VERSION!!</em></p><p name="ebed" id="ebed" class="graf graf--p graf-after--p graf--trailing"><em class="markup--em markup--p-em">— as a standalone WebAssembly binary.</em></p></div></div></section><section name="1e44" class="section section--body"><div class="section-divider"><hr class="section-divider"></div><div class="section-content"><div class="section-inner sectionLayout--insetColumn"><blockquote name="24e0" id="24e0" class="graf graf--pullquote graf--leading">.NET 9 combined WebAssembly (WASM) with Ahead-of-Time (AOT) compilation in a way that fundamentally shifts the performance equation. .NET applications can run anywhere with startup times that make Node.js look glitchy! ewww</blockquote><p name="3c29" id="3c29" class="graf graf--p graf-after--pullquote">BEWARE — I’m not talking about replacing Node.js everywhere. But for specific scenarios — serverless functions, edge computing, browser applications — this combination creates performance characteristics that Node.js simply can’t match</p><p name="e969" id="e969" class="graf graf--p graf-after--p">Let me show you exactly what I found —</p><h3 name="0cca" id="0cca" class="graf graf--h3 graf-after--p">🔻WASM + AOT</h3><figure name="d7bc" id="d7bc" class="graf graf--figure graf-after--h3"><img class="graf-image" data-image-id="1*ChL-9ELlqRQkPMq55-fxHA.png" data-width="800" data-height="501" src="https://cdn-images-1.medium.com/max/800/1*ChL-9ELlqRQkPMq55-fxHA.png"></figure><p name="8f3b" id="8f3b" class="graf graf--p graf-after--figure">.NET applications to be honest sometime feels full of lag sometime — they need a runtime, they have slower cold starts, and they use more memory than lightweight alternatives like Node.js.</p><blockquote name="0840" id="0840" class="graf graf--blockquote graf-after--p">WASM + AOT eliminates all three problems.</blockquote><h4 name="9e46" id="9e46" class="graf graf--h4 graf-after--blockquote">Simplifying —</h4><p name="268b" id="268b" class="graf graf--p graf-after--h4">AOT compilation takes your .NET code and compiles it directly to native machine code before deployment. No Just-In-Time compilation, no runtime overhead. Then WebAssembly packages that compiled code into a format that can run anywhere — browsers, servers, edge devices.</p><p name="84f3" id="84f3" class="graf graf--p graf-after--p">I tested this with a simple API that processes financial data. Same logic, same algorithms, deployed three different ways —</p><figure name="04d0" id="04d0" class="graf graf--figure graf-after--p"><img class="graf-image" data-image-id="1*KnqEMzCSC71q05J8nqUV7g.png" data-width="960" data-height="540" src="https://cdn-images-1.medium.com/max/800/1*KnqEMzCSC71q05J8nqUV7g.png"></figure><p name="1244" id="1244" class="graf graf--p graf-after--figure graf--trailing">Node.js version was winning until that last comparison💀 . Suddenly, .NET was dramatically High, Stoned and on fire!</p></div></div></section><section name="d311" class="section section--body"><div class="section-divider"><hr class="section-divider"></div><div class="section-content"><div class="section-inner sectionLayout--insetColumn"><h3 name="db61" id="db61" class="graf graf--h3 graf--leading">🔻Understanding WASM + AOT in 1 Minute</h3><p name="6c63" id="6c63" class="graf graf--p graf-after--h3">It’s about making .NET deployable in places where it was never practical before.</p><p name="d8c4" id="d8c4" class="graf graf--p graf-after--p"><strong class="markup--strong markup--p-strong"><em class="markup--em markup--p-em">Take serverless functions</em></strong>. With traditional .NET, cold starts kill performance. By the time your application loads the runtime and JIT-compiles your code, a Node.js function has already finished and returned a response.</p><p name="9d34" id="9d34" class="graf graf--p graf-after--p">But WASM + AOT flips this completely. Your .NET code is already compiled to native machine code and packaged in a tiny binary. No runtime to load, no compilation step, no warm-up period. Just instant execution.</p><p name="a7c2" id="a7c2" class="graf graf--p graf-after--p">I deployed the same portfolio calculation function to AWS Lambda in both Node.js and .NET 9 WASM:</p><figure name="3a9f" id="3a9f" class="graf graf--figure graf-after--p"><img class="graf-image" data-image-id="1*hxIeXtMbXJPkCo3-8hYi8g.png" data-width="790" data-height="444" src="https://cdn-images-1.medium.com/max/800/1*hxIeXtMbXJPkCo3-8hYi8g.png"><figcaption class="imageCaption">10x Faster</figcaption></figure><p name="985c" id="985c" class="graf graf--p graf-after--figure">Cold start is a way powerful when its about WASM + AOT</p><p name="56ce" id="56ce" class="graf graf--p graf-after--p graf--trailing">For applications that don’t maintain constant traffic, this makes .NET competitive in scenarios where it was previously unusable.</p></div></div></section><section name="9d2c" class="section section--body"><div class="section-divider"><hr class="section-divider"></div><div class="section-content"><div class="section-inner sectionLayout--insetColumn"><h3 name="e8d3" id="e8d3" class="graf graf--h3 graf--leading">🔻How to Start Building WASM + AOT Applications</h3><p name="acbe" id="acbe" class="graf graf--p graf-after--h3">Just tell .NET to compile your application ahead of time and package it as WebAssembly instead of a regular executable. that’s it</p><pre data-code-block-mode="1" spellcheck="false" data-code-block-lang="xml" name="e6cf" id="e6cf" class="graf graf--pre graf-after--p graf--trailing graf--preV2"><span class="pre--content"><span class="hljs-tag">&lt;<span class="hljs-name">Project</span> <span class="hljs-attr">Sdk</span>=<span class="hljs-string">&quot;Microsoft.NET.Sdk&quot;</span>&gt;</span><br />  <span class="hljs-tag">&lt;<span class="hljs-name">PropertyGroup</span>&gt;</span><br />    <span class="hljs-tag">&lt;<span class="hljs-name">TargetFramework</span>&gt;</span>net9.0<span class="hljs-tag">&lt;/<span class="hljs-name">TargetFramework</span>&gt;</span><br />    <span class="hljs-tag">&lt;<span class="hljs-name">PublishAot</span>&gt;</span>true<span class="hljs-tag">&lt;/<span class="hljs-name">PublishAot</span>&gt;</span><br />    <span class="hljs-tag">&lt;<span class="hljs-name">RuntimeIdentifier</span>&gt;</span>wasm-wasi<span class="hljs-tag">&lt;/<span class="hljs-name">RuntimeIdentifier</span>&gt;</span><br />    <span class="hljs-tag">&lt;<span class="hljs-name">OutputType</span>&gt;</span>Exe<span class="hljs-tag">&lt;/<span class="hljs-name">OutputType</span>&gt;</span><br />    <span class="hljs-tag">&lt;<span class="hljs-name">InvariantGlobalization</span>&gt;</span>true<span class="hljs-tag">&lt;/<span class="hljs-name">InvariantGlobalization</span>&gt;</span><br />  <span class="hljs-tag">&lt;/<span class="hljs-name">PropertyGroup</span>&gt;</span><br /><span class="hljs-tag">&lt;/<span class="hljs-name">Project</span>&gt;</span></span></pre></div></div></section><section name="0d9f" class="section section--body"><div class="section-divider"><hr class="section-divider"></div><div class="section-content"><div class="section-inner sectionLayout--insetColumn"><h3 name="3914" id="3914" class="graf graf--h3 graf--leading">🔻Where WASM + AOT Wins</h3><figure name="8729" id="8729" class="graf graf--figure graf-after--h3"><img class="graf-image" data-image-id="1*21Ml7b07veLj2F9XmANg7w.avif" data-width="1900" data-height="950" src="https://cdn-images-1.medium.com/max/800/1*21Ml7b07veLj2F9XmANg7w.avif"><figcaption class="imageCaption">reference image is from AOT — LOL Watch anime!!!</figcaption></figure><p name="3938" id="3938" class="graf graf--p graf-after--figure">Check this —</p><h4 name="6bec" id="6bec" class="graf graf--h4 graf-after--p">Best Fit for</h4><ul class="postList"><li name="69df" id="69df" class="graf graf--li graf-after--h4">Serverless functions with unpredictable traffic</li><li name="29a8" id="29a8" class="graf graf--li graf-after--li">Edge computing applications</li><li name="df98" id="df98" class="graf graf--li graf-after--li">Browser-based tools and calculators</li><li name="e885" id="e885" class="graf graf--li graf-after--li">Microservices with fast startup requirements</li><li name="bd79" id="bd79" class="graf graf--li graf-after--li">Applications deployed to resource-constrained environments</li></ul><h4 name="6236" id="6236" class="graf graf--h4 graf-after--li">Red flag</h4><ul class="postList"><li name="e43d" id="e43d" class="graf graf--li graf-after--h4">Long-running applications that benefit from JIT optimizations over time</li><li name="eb13" id="eb13" class="graf graf--li graf-after--li">Applications requiring extensive .NET framework features</li><li name="8a3b" id="8a3b" class="graf graf--li graf-after--li">Complex enterprise applications with heavy dependency chains</li><li name="6634" id="6634" class="graf graf--li graf-after--li">Applications that need dynamic code generation or reflection</li></ul><blockquote name="b75e" id="b75e" class="graf graf--blockquote graf-after--li graf--trailing">In my application(stock portfolio management), I split the architecture. The main portfolio management system runs on traditional .NET for maximum feature richness. But the real-time risk calculation API runs on WASM + AOT for instant response times.</blockquote></div></div></section><section name="ca9b" class="section section--body section--last"><div class="section-divider"><hr class="section-divider"></div><div class="section-content"><div class="section-inner sectionLayout--insetColumn"><h3 name="085b" id="085b" class="graf graf--h3 graf--leading">💡End Note</h3><p name="4763" id="4763" class="graf graf--p graf-after--h3"><em class="markup--em markup--p-em">This feels similar to when Docker changed how we think about application deployment, or when cloud computing changed how we think about infrastructure.</em></p><blockquote name="1782" id="1782" class="graf graf--blockquote graf-after--p"><em class="markup--em markup--blockquote-em">WASM + AOT makes .NET deployable in entirely new contexts.</em></blockquote><p name="c372" id="c372" class="graf graf--p graf-after--blockquote graf--trailing">Thank you 🖤</p></div></div></section>
+</section>
+<footer><p>By <a href="https://medium.com/@isitvritra101" class="p-author h-card">Is It Vritra - SDE I</a> on <a href="https://medium.com/p/9fd4bfa14b23"><time class="dt-published" datetime="2025-08-16T14:01:55.501Z">August 16, 2025</time></a>.</p><p><a href="https://medium.com/@isitvritra101/net-9-feature-that-will-kill-node-js-9fd4bfa14b23" class="p-canonical">Canonical link</a></p><p>Exported from <a href="https://medium.com">Medium</a> on December 14, 2025.</p></footer></article></body></html>

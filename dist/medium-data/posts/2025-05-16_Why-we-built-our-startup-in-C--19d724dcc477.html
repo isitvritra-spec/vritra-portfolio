@@ -1,0 +1,72 @@
+<!DOCTYPE html><html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><title>Why we built our startup in C#</title><style>
+      * {
+        font-family: Georgia, Cambria, "Times New Roman", Times, serif;
+      }
+      html, body {
+        margin: 0;
+        padding: 0;
+      }
+      h1 {
+        font-size: 50px;
+        margin-bottom: 17px;
+        color: #333;
+      }
+      h2 {
+        font-size: 24px;
+        line-height: 1.6;
+        margin: 30px 0 0 0;
+        margin-bottom: 18px;
+        margin-top: 33px;
+        color: #333;
+      }
+      h3 {
+        font-size: 30px;
+        margin: 10px 0 20px 0;
+        color: #333;
+      }
+      header {
+        width: 640px;
+        margin: auto;
+      }
+      section {
+        width: 640px;
+        margin: auto;
+      }
+      section p {
+        margin-bottom: 27px;
+        font-size: 20px;
+        line-height: 1.6;
+        color: #333;
+      }
+      section img {
+        max-width: 640px;
+      }
+      footer {
+        padding: 0 20px;
+        margin: 50px 0;
+        text-align: center;
+        font-size: 12px;
+      }
+      .aspectRatioPlaceholder {
+        max-width: auto !important;
+        max-height: auto !important;
+      }
+      .aspectRatioPlaceholder-fill {
+        padding-bottom: 0 !important;
+      }
+      header,
+      section[data-field=subtitle],
+      section[data-field=description] {
+        display: none;
+      }
+      </style></head><body><article class="h-entry">
+<header>
+<h1 class="p-name">Why we built our startup in C#</h1>
+</header>
+<section data-field="subtitle" class="p-summary">
+by Co-Founder &amp; CTO of Tracebit
+</section>
+<section data-field="body" class="e-content">
+<section name="7ea3" class="section section--body section--first section--last"><div class="section-divider"><hr class="section-divider"></div><div class="section-content"><div class="section-inner sectionLayout--insetColumn"><figure name="5ac5" id="5ac5" class="graf graf--figure graf--leading"><img class="graf-image" data-image-id="1*RFjwjtb6yDjBgrLytNxoXg.png" data-width="1080" data-height="1080" src="https://cdn-images-1.medium.com/max/800/1*RFjwjtb6yDjBgrLytNxoXg.png"></figure><h3 name="d1d8" id="d1d8" class="graf graf--h3 graf-after--figure graf--title">Why we built our startup in C#</h3><h4 name="3fc5" id="3fc5" class="graf graf--h4 graf-after--h3 graf--subtitle">by Co-Founder &amp; CTO of Tracebit</h4><p name="122d" id="122d" class="graf graf--p graf-after--h4">When we started building Tracebit — a B2B SaaS security product — one of my key early decisions was to pick a programming language. While many startups gravitate toward Python, TypeScript, Golang, or Rust, I went a different way: C#.</p><h3 name="2aa6" id="2aa6" class="graf graf--h3 graf-after--p">Productivity First</h3><p name="5f4c" id="5f4c" class="graf graf--p graf-after--h3">I think a stack which lets you spend time on what actually matters is the core of a great developer experience. I wanted:</p><ul class="postList"><li name="10f2" id="10f2" class="graf graf--li graf-after--p">an expressive, fully-featured language which would let us quickly test and refine ideas</li><li name="e8af" id="e8af" class="graf graf--li graf-after--li">the assurance offered by static types when maintaining and refactoring code</li><li name="2002" id="2002" class="graf graf--li graf-after--li">a stable platform that would still work well as our team and codebase grew</li></ul><p name="ff17" id="ff17" class="graf graf--p graf-after--li">C# has allowed us to be highly productive from the earliest days and it feels like a really solid foundation to build on.</p><h3 name="1dac" id="1dac" class="graf graf--h3 graf-after--p">Modern, Open &amp; Cross-Platform</h3><p name="9a9d" id="9a9d" class="graf graf--p graf-after--h3">I was pleasantly surprised to find that .NET is now fully open source and MIT-licensed. The cross-platform support lets us develop on MacBooks, and deploy to Linux containers on ARM cores. Microsoft’s <a href="https://devblogs.microsoft.com/dotnet/announcing-dotnet-chiseled-containers/" data-href="https://devblogs.microsoft.com/dotnet/announcing-dotnet-chiseled-containers/" class="markup--anchor markup--p-anchor" rel="noopener" target="_blank">“chiseled” container images</a> are a nice touch too, giving us a lean deployment option which minimizes CVE management.</p><h3 name="cc24" id="cc24" class="graf graf--h3 graf-after--p">Popularity</h3><figure name="9dba" id="9dba" class="graf graf--figure graf-after--h3"><img class="graf-image" data-image-id="0*5__C6FjJxW_xMtSN.png" data-width="914" data-height="726" data-is-featured="true" src="https://cdn-images-1.medium.com/max/800/0*5__C6FjJxW_xMtSN.png"></figure><p name="ca86" id="ca86" class="graf graf--p graf-after--figure"><em class="markup--em markup--p-em">Stack Overflow Developer Survey 2024</em></p><p name="f1d6" id="f1d6" class="graf graf--p graf-after--p">C# consistently ranks as a highly popular programming language, though perhaps without generating the buzz that some other languages might — especially among startups! This established presence gives us real advantages:</p><ul class="postList"><li name="69b2" id="69b2" class="graf graf--li graf-after--p">A great talent pool from which to hire</li><li name="44ae" id="44ae" class="graf graf--li graf-after--li">Plenty of world-class libraries at our fingertips</li><li name="cf07" id="cf07" class="graf graf--li graf-after--li">Lots of documentation and examples when needed</li><li name="7015" id="7015" class="graf graf--li graf-after--li">Well-traveled paths with fewer unexpected roadblocks</li></ul><h3 name="eb4a" id="eb4a" class="graf graf--h3 graf-after--li">Rich Standard Library</h3><p name="7c84" id="7c84" class="graf graf--p graf-after--h3">The .NET ecosystem comes with quality libraries for just about everything we’ve needed. Along with the usual suspects (collections, JSON processing, etc), <a href="https://learn.microsoft.com/ef/" data-href="https://learn.microsoft.com/ef/" class="markup--anchor markup--p-anchor" rel="noopener" target="_blank">Entity Framework</a> and <a href="https://dotnet.microsoft.com/apps/aspnet" data-href="https://dotnet.microsoft.com/apps/aspnet" class="markup--anchor markup--p-anchor" rel="noopener" target="_blank">ASP.NET</a> stand out as excellent frameworks in which to build.</p><p name="c294" id="c294" class="graf graf--p graf-after--p">This has been particularly valuable for us as a security product. We have high standards for dependencies, and having so many trusted and well-maintained components available has saved us a lot of time!</p><h3 name="1f62" id="1f62" class="graf graf--h3 graf-after--p">Expressive language features</h3><figure name="c174" id="c174" class="graf graf--figure graf-after--h3"><img class="graf-image" data-image-id="0*oUUXzxwzfW96Eadt.png" data-width="2000" data-height="1480" src="https://cdn-images-1.medium.com/max/800/0*oUUXzxwzfW96Eadt.png"></figure><p name="4d19" id="4d19" class="graf graf--p graf-after--figure">C# as a language has many nice features, such as LINQ, pattern-matching, anonymous functions, primary constructors and null-coalescing operators that make it both expressive and succinct. I’ve honestly found it a pleasure to read and write.</p><p name="c6c2" id="c6c2" class="graf graf--p graf-after--p">When it comes to the type system, I think C# has found a really nice balance — it’s powerful without feeling overly complex. I particularly like the support for generics, record types, and reflection.</p><h3 name="354f" id="354f" class="graf graf--h3 graf-after--p">Great Tooling</h3><p name="037d" id="037d" class="graf graf--p graf-after--h3">The development ecosystem offers some excellent tools:</p><ul class="postList"><li name="e194" id="e194" class="graf graf--li graf-after--p">Powerful IDEs with great debugging and refactoring support</li><li name="851b" id="851b" class="graf graf--li graf-after--li">Great static analyzers that will often suggest fixes automatically</li><li name="b59e" id="b59e" class="graf graf--li graf-after--li">Sophisticated tooling for memory profiling and runtime diagnostics</li></ul><p name="5d85" id="5d85" class="graf graf--p graf-after--li">These make it a joy to work with the language, and help avoid nasty surprises in production.</p><h3 name="4022" id="4022" class="graf graf--h3 graf-after--p">It’s Fast</h3><figure name="2796" id="2796" class="graf graf--figure graf-after--h3"><img class="graf-image" data-image-id="0*IybwbQT1wUnpRUSE.png" data-width="862" data-height="372" src="https://cdn-images-1.medium.com/max/800/0*IybwbQT1wUnpRUSE.png"></figure><p name="53a4" id="53a4" class="graf graf--p graf-after--figure"><em class="markup--em markup--p-em">Note: This graphic has been updated from the original post with the latest TechEmpower results.</em></p><p name="2a6f" id="2a6f" class="graf graf--p graf-after--p">While performance wasn’t our main reason for choosing C#, it’s certainly a nice advantage. It’s clearly a priority for the .NET team and each release brings <a href="https://devblogs.microsoft.com/dotnet/performance-improvements-in-net-9" data-href="https://devblogs.microsoft.com/dotnet/performance-improvements-in-net-9" class="markup--anchor markup--p-anchor" rel="noopener" target="_blank">meaningful performance improvements</a>. We process a lot of data on behalf of our customers and I’ve been very impressed by the throughput we’ve been able to achieve with simple and idiomatic C# — while still offering many options to optimize hot code paths if necessary.</p><h3 name="41af" id="41af" class="graf graf--h3 graf-after--p">How It’s Going</h3><p name="95bd" id="95bd" class="graf graf--p graf-after--h3">After thousands of commits and over 100,000 lines of code, I’m very happy with our choice. We’ve brought on team members who had never used C# before, and everyone’s become productive surprisingly quickly — shipping code to production on their first day.</p><p name="47c9" id="47c9" class="graf graf--p graf-after--p graf--trailing">No programming language is perfect for every situation, and what works for us might not work for everyone. But C# has been a key part of Tracebit’s success so far. If you’ve overlooked C# based on outdated perceptions (like I almost did), I’d definitely recommend taking a closer look!</p></div></div></section>
+</section>
+<footer><p>By <a href="https://medium.com/@isitvritra101" class="p-author h-card">Is It Vritra - SDE I</a> on <a href="https://medium.com/p/19d724dcc477"><time class="dt-published" datetime="2025-05-16T04:32:40.745Z">May 16, 2025</time></a>.</p><p><a href="https://medium.com/@isitvritra101/why-we-built-our-startup-in-c-19d724dcc477" class="p-canonical">Canonical link</a></p><p>Exported from <a href="https://medium.com">Medium</a> on December 14, 2025.</p></footer></article></body></html>

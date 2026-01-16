@@ -1,0 +1,72 @@
+<!DOCTYPE html><html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><title>Why you shouldn’t use vector databases for RAG</title><style>
+      * {
+        font-family: Georgia, Cambria, "Times New Roman", Times, serif;
+      }
+      html, body {
+        margin: 0;
+        padding: 0;
+      }
+      h1 {
+        font-size: 50px;
+        margin-bottom: 17px;
+        color: #333;
+      }
+      h2 {
+        font-size: 24px;
+        line-height: 1.6;
+        margin: 30px 0 0 0;
+        margin-bottom: 18px;
+        margin-top: 33px;
+        color: #333;
+      }
+      h3 {
+        font-size: 30px;
+        margin: 10px 0 20px 0;
+        color: #333;
+      }
+      header {
+        width: 640px;
+        margin: auto;
+      }
+      section {
+        width: 640px;
+        margin: auto;
+      }
+      section p {
+        margin-bottom: 27px;
+        font-size: 20px;
+        line-height: 1.6;
+        color: #333;
+      }
+      section img {
+        max-width: 640px;
+      }
+      footer {
+        padding: 0 20px;
+        margin: 50px 0;
+        text-align: center;
+        font-size: 12px;
+      }
+      .aspectRatioPlaceholder {
+        max-width: auto !important;
+        max-height: auto !important;
+      }
+      .aspectRatioPlaceholder-fill {
+        padding-bottom: 0 !important;
+      }
+      header,
+      section[data-field=subtitle],
+      section[data-field=description] {
+        display: none;
+      }
+      </style></head><body><article class="h-entry">
+<header>
+<h1 class="p-name">Why you shouldn’t use vector databases for RAG</h1>
+</header>
+<section data-field="subtitle" class="p-summary">
+The contrarian take on building better retrieval augmented generation systems
+</section>
+<section data-field="body" class="e-content">
+<section name="ce83" class="section section--body section--first section--last"><div class="section-divider"><hr class="section-divider"></div><div class="section-content"><div class="section-inner sectionLayout--outsetColumn"><figure name="4eb7" id="4eb7" class="graf graf--figure graf--layoutOutsetCenter graf--leading"><img class="graf-image" data-image-id="0*6HQd3y82CypMGqYf.png" data-width="2000" data-height="1168" data-is-featured="true" src="https://cdn-images-1.medium.com/max/1200/0*6HQd3y82CypMGqYf.png"></figure></div><div class="section-inner sectionLayout--insetColumn"><h3 name="aa84" id="aa84" class="graf graf--h3 graf-after--figure graf--title">Why you shouldn’t use vector databases for RAG</h3><h4 name="dbf0" id="dbf0" class="graf graf--h4 graf-after--h3 graf--subtitle">The contrarian take on building better retrieval augmented generation systems</h4><h3 name="8b10" id="8b10" class="graf graf--h3 graf-after--h4">What is RAG, and why should you care?</h3><p name="a05e" id="a05e" class="graf graf--p graf-after--h3">Every day, millions of people interact with ChatGPT, Claude, and other large language models, fundamentally changing how we interact with computers. The appeal is obvious: instead of learning specific interfaces, users can simply communicate in natural language. The machine adapts to the human, not the other way around.</p><p name="1e27" id="1e27" class="graf graf--p graf-after--p">This shift has organizations scrambling to create similar experiences with their own data. Whether it’s building a support chatbot that understands product documentation, crafting an assistant that writes personalized emails, or developing an internal tool to help employees access company knowledge, they all require the same foundation: giving LLMs access to proprietary information.</p><p name="b8c2" id="b8c2" class="graf graf--p graf-after--p">Enter Retrieval Augmented Generation (RAG), a workflow that’s deceptively simple in concept:</p><ol class="postList"><li name="2746" id="2746" class="graf graf--li graf-after--p">User asks a question</li><li name="8823" id="8823" class="graf graf--li graf-after--li">The system retrieves relevant documents based on that question</li><li name="7237" id="7237" class="graf graf--li graf-after--li">LLM generates an answer using those retrieved documents as context</li></ol><p name="f2e6" id="f2e6" class="graf graf--p graf-after--li">When implemented correctly, RAG provides more accurate, up-to-date responses while reducing hallucinations. But here’s where most engineers go wrong: they default to vector databases without considering whether that’s actually the optimal approach.</p><h3 name="1299" id="1299" class="graf graf--h3 graf-after--p">The engineer’s shortcut: Vector databases</h3><p name="cde0" id="cde0" class="graf graf--p graf-after--h3">The typical RAG implementation looks something like this:</p><pre data-code-block-mode="1" spellcheck="false" data-code-block-lang="sql" name="0e9d" id="0e9d" class="graf graf--pre graf-after--p graf--preV2"><span class="pre--content"><span class="hljs-keyword">User</span> Question → <span class="hljs-keyword">Convert</span> <span class="hljs-keyword">to</span> Embedding → Query Vector DB → Retrieve <span class="hljs-keyword">Similar</span> Documents → Generate Answer</span></pre><p name="5ffc" id="5ffc" class="graf graf--p graf-after--pre">It makes intuitive sense. Vector embeddings capture semantic meaning, so similar concepts cluster together in the vector space. By converting questions and documents to the same embedding space, you can find relevant information even when the exact keywords don’t match.</p><p name="0c55" id="0c55" class="graf graf--p graf-after--p">Engineers love this approach because it seems elegant. You don’t need complex query parsing or keyword matching — just transform everything to vectors and let similarity algorithms do the work.</p><p name="42dc" id="42dc" class="graf graf--p graf-after--p">But this shortcut creates two critical problems that significantly degrade the quality of the results.</p><h3 name="7823" id="7823" class="graf graf--h3 graf-after--p">Problem 1: Unrefined queries lead to irrelevant results</h3><p name="964b" id="964b" class="graf graf--p graf-after--h3">The first major issue occurs at the initial step: we take the raw user query, convert it directly to an embedding, and use that to retrieve documents.</p><p name="492f" id="492f" class="graf graf--p graf-after--p">Think about what happens when you use Google. You don’t always search with your actual question — you distill it to key terms that are more likely to yield relevant results. If you want to know “What’s the best way to organize React components in a large project?”, you might search for “React component organization best practices large applications.”</p><p name="64f4" id="64f4" class="graf graf--p graf-after--p">LLMs excel at this kind of query refinement, but in the standard vector DB approach, we skip this crucial step. The embedding captures the semantic meaning of the original question, but that doesn’t always align with the optimal search query.</p><h3 name="0ffa" id="0ffa" class="graf graf--h3 graf-after--p">Problem 2: Vector search sacrifices precision for recall</h3><p name="255b" id="255b" class="graf graf--p graf-after--h3">The second problem is more fundamental: vector similarity search is strong at recall but often weaker at precision compared to traditional full-text search.</p><p name="4a4d" id="4a4d" class="graf graf--p graf-after--p">Vector search excels at finding conceptually related content (recall) — documents that discuss similar topics, even if they use different terminology. However, it’s less effective at pinpointing exactly what you need (precision).</p><p name="9e2e" id="9e2e" class="graf graf--p graf-after--p">Full-text search, on the other hand, prioritizes precision. When exact keyword matches exist, they’re usually highly relevant. The trade-off is that full-text search might miss conceptually similar content that uses different terminology.</p><p name="dbd7" id="dbd7" class="graf graf--p graf-after--p">This explains why many RAG systems that rely exclusively on vector databases end up implementing additional re-ranking steps after initial retrieval. It’s also why vector databases increasingly add full-text capabilities — they recognize the inherent limitations of pure vector search.</p><h3 name="5374" id="5374" class="graf graf--h3 graf-after--p">A more human approach to RAG</h3><p name="c569" id="c569" class="graf graf--p graf-after--h3">Since we’re trying to build systems that mimic human intelligence, shouldn’t we structure our RAG pipelines to mirror how humans actually search for information?</p><p name="0349" id="0349" class="graf graf--p graf-after--p">When people need to find information, they:</p><ol class="postList"><li name="85a8" id="85a8" class="graf graf--li graf-after--p">Reframe their question into effective search terms</li><li name="4727" id="4727" class="graf graf--li graf-after--li">Use search engines optimized for retrieving relevant information</li><li name="eb6c" id="eb6c" class="graf graf--li graf-after--li">Scan results to identify the most useful content</li></ol><p name="8fb9" id="8fb9" class="graf graf--p graf-after--li">A better RAG design would follow this pattern:</p><pre data-code-block-mode="1" spellcheck="false" data-code-block-lang="sql" name="b95a" id="b95a" class="graf graf--pre graf-after--p graf--preV2"><span class="pre--content"><span class="hljs-keyword">User</span> Question → LLM Refines <span class="hljs-keyword">Into</span> <span class="hljs-keyword">Search</span> Query → Hybrid <span class="hljs-keyword">Search</span> (Combining <span class="hljs-keyword">Full</span><span class="hljs-operator">-</span>text <span class="hljs-keyword">and</span> Semantic) → Retrieve Relevant Documents → LLM Generates Answer</span></pre><p name="ad1f" id="ad1f" class="graf graf--p graf-after--pre">This approach addresses both problems:</p><ol class="postList"><li name="8e1c" id="8e1c" class="graf graf--li graf-after--p">The LLM refines the user’s original question into an optimized search query</li><li name="164e" id="164e" class="graf graf--li graf-after--li">Hybrid search combines the precision of full-text search with the recall of semantic search</li></ol><h3 name="7f76" id="7f76" class="graf graf--h3 graf-after--li">The solution: Simpler (and better) RAG with search engines</h3><p name="57c9" id="57c9" class="graf graf--p graf-after--h3">Here’s my contrarian take:</p><blockquote name="7031" id="7031" class="graf graf--pullquote graf-after--p">instead of jumping to vector databases for RAG, start with a quality search engine that combines full-text and semantic capabilities.</blockquote><p name="5161" id="5161" class="graf graf--p graf-after--pullquote">Modern search engines offer hybrid search functionality that delivers better overall relevance than pure vector retrieval. They’re also:</p><ul class="postList"><li name="527b" id="527b" class="graf graf--li graf-after--p">Easier to deploy and maintain</li><li name="18ca" id="18ca" class="graf graf--li graf-after--li">Optimized for fast queries at scale</li><li name="8856" id="8856" class="graf graf--li graf-after--li">Designed with relevance as the primary objective</li><li name="87da" id="87da" class="graf graf--li graf-after--li">More intuitive for debugging search results</li></ul><p name="4dd3" id="4dd3" class="graf graf--p graf-after--li">For most RAG applications, the workflow becomes much simpler:</p><ol class="postList"><li name="8c4b" id="8c4b" class="graf graf--li graf-after--p">The user submits a question</li><li name="a2a7" id="a2a7" class="graf graf--li graf-after--li">LLM transforms that question into an effective search query</li><li name="2662" id="2662" class="graf graf--li graf-after--li">The search engine retrieves relevant documents using hybrid search</li><li name="d36d" id="d36d" class="graf graf--li graf-after--li">LLM generates a response using those documents as context</li></ol><p name="f8b0" id="f8b0" class="graf graf--p graf-after--li">This approach aligns with how humans actually search for information, leveraging the strengths of both LLMs and search technology while avoiding unnecessary complexity.</p><h3 name="9131" id="9131" class="graf graf--h3 graf-after--p">The power of simplicity in RAG: Back to search basics</h3><p name="2e28" id="2e28" class="graf graf--p graf-after--h3">Vector databases certainly have their place in the machine learning ecosystem, but they’re not always the best foundation for RAG systems. By taking a step back and considering how humans search for information, we can build more effective, simpler RAG architectures.</p><blockquote name="54c8" id="54c8" class="graf graf--pullquote graf-after--p graf--trailing">The next time you’re designing a RAG system, consider whether a good search engine might be the better choice. Your users (and your future self maintaining the system) will thank you.</blockquote></div></div></section>
+</section>
+<footer><p>By <a href="https://medium.com/@isitvritra101" class="p-author h-card">Is It Vritra - SDE I</a> on <a href="https://medium.com/p/d4a557f80683"><time class="dt-published" datetime="2025-05-17T00:32:27.861Z">May 17, 2025</time></a>.</p><p><a href="https://medium.com/@isitvritra101/why-you-shouldnt-use-vector-databases-for-rag-d4a557f80683" class="p-canonical">Canonical link</a></p><p>Exported from <a href="https://medium.com">Medium</a> on December 14, 2025.</p></footer></article></body></html>
