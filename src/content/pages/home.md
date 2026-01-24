@@ -1,41 +1,44 @@
 ---
-title: "Is It Vritra | Full Stack .NET & AI Expert"
+title: "Is It Vritra | AI Solutions Architect & .NET Developer"
 description: "Building high-performance, AI-integrated enterprise solutions for government and enterprise clients."
 
 name: "Is It Vritra"
-role: "Full Stack .NET & AI Expert"
-heroDescription: "Specialized in high-performance .NET applications, AI integration, and scalable system architecture for government and enterprise clients."
+role: "AI Solutions Architect & .NET Developer"
+heroDescription: "Specialized in crafting scalable, AI-powered cloud-native applications using .NET, Azure OpenAI, and modern cloud architecture for government and enterprise clients."
 
 skills:
-  - "WEB DESIGN"
-  - "APP DESIGN"
-  - "DEVELOPMENT"
-  - "WEB FLOW"
-  - "BRANDING"
+  - ".NET CORE"
+  - "AZURE"
+  - "AI/ML"
+  - "BLAZOR"
+  - "ANGULAR"
+  - "MICROSERVICES"
 
 social:
-  - platform: "FACEBOOK"
+  - platform: "LINKEDIN"
     url: "#"
-  - platform: "YOUTUBE"
+  - platform: "GITHUB"
     url: "#"
   - platform: "TWITTER"
     url: "#"
 
-email: "INFO.MADHU786@GMAIL.COM"
+email: "isitvritra@gmail.com"
+whatsapp: "+919286842595"
+location: "Roaming around the world"
 
 services:
-  - title: "UI-UX CREATIVE DESIGN"
-    description: "Creating intuitive and beautiful user experiences that combine aesthetic excellence with functional design. From wireframes to final implementation, every pixel is crafted with purpose and precision."
+  - title: "AI INTEGRATION & GENAI SOLUTIONS"
+    description: "Implementing cutting-edge AI capabilities including RAG, fine-tuning LLMs, Azure OpenAI (GPT-4), vector databases, and intelligent automation. Building AI-powered features that enhance decision-making and user experiences."
     featured: true
-    icon: '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="3"/><path d="M12 2v4m0 12v4M4.93 4.93l2.83 2.83m8.48 8.48l2.83 2.83M2 12h4m12 0h4M4.93 19.07l2.83-2.83m8.48-8.48l2.83-2.83"/></svg>'
-  - title: "VISUAL GRAPHIC DESIGN"
-    description: "Crafting stunning visual identities and brand materials that tell your story. From logo design to complete brand systems, creating memorable visual experiences that resonate with your audience."
+    icon: '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 8V4H8"/><rect width="16" height="12" x="4" y="8" rx="2"/><path d="M2 14h2"/><path d="M20 14h2"/><path d="M15 13v2"/><path d="M9 13v2"/></svg>'
+  - title: "FULL STACK .NET DEVELOPMENT"
+    description: "Building enterprise-grade applications with C#, ASP.NET Core, Entity Framework, and Microservices. From REST APIs to complete cloud-native solutions with a focus on performance, security, and maintainability."
     featured: false
-    icon: '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M9 2H5a2 2 0 0 0-2 2v4m0 8v4a2 2 0 0 0 2 2h4m8 0h4a2 2 0 0 0 2-2v-4m0-8V4a2 2 0 0 0-2-2h-4"/><rect width="6" height="6" x="9" y="9" rx="1"/></svg>'
-  - title: "STRATEGY & DIGITAL MARKETING"
-    description: "Building data-driven digital marketing strategies that deliver measurable results. From SEO to social media campaigns, creating comprehensive strategies that grow your brand and engage your audience."
+    icon: '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="m18 16 4-4-4-4"/><path d="m6 8-4 4 4 4"/><path d="m14.5 4-5 16"/></svg>'
+  - title: "ENTERPRISE CLOUD ARCHITECTURE"
+    description: "Designing and deploying scalable cloud solutions using Azure Functions, App Services, Cosmos DB, and serverless computing. Implementing secure, cost-effective architectures that scale with your business."
     featured: false
-    icon: '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 3v18h18"/><path d="m19 9-5 5-4-4-3 3"/><circle cx="20" cy="8" r="2"/></svg>'
+    icon: '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z"/></svg>'
 
 approach:
   - title: "Security First"
@@ -49,23 +52,23 @@ approach:
     icon: '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 3v18h18"/><path d="m19 9-5 5-4-4-3 3"/></svg>'
 
 currentProject:
-  name: "National Health Platform"
-  client: "Government Project"
-  description: "Building a secure, AI-integrated health platform designed to protect and serve citizens at a national scale."
-  progress: 40
-  phase: "MVP Development"
-  timeline: "October 2024 — January 2025"
+  name: "Global Health Intelligence Platform"
+  client: "Confidential UN Agency"
+  description: "Building a secure, AI-integrated health intelligence platform with real-time data processing and LLM-powered insights for international health preparedness."
+  progress: 60
+  phase: "MVP Phase II"
+  timeline: "October 2024 — March 2025"
   technologies:
     - ".NET 8"
-    - "Secure LLM"
-    - "Azure"
+    - "Azure OpenAI"
+    - "RAG"
     - "Healthcare APIs"
 
 stats:
+  - value: "6+"
+    label: "Years Experience"
   - value: "8+"
     label: "Enterprise Projects"
-  - value: "100+"
-    label: "Articles Written"
   - value: "160h"
     label: "Monthly Hours"
   - value: "24h"
@@ -73,9 +76,9 @@ stats:
 
 availability:
   status: "Currently Engaged"
-  nextAvailable: "Mid-January 2025"
+  nextAvailable: "After Mid-March 2025"
 ---
 
 # About Is It Vritra
 
-Full Stack .NET & AI Expert specializing in high-performance enterprise applications.
+AI Solutions Architect & .NET Developer specializing in high-performance, AI-integrated enterprise applications.

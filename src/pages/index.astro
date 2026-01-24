@@ -36,110 +36,111 @@ const latestArticles = allArticles
 ---
 
 <BaseLayout title={home.data.title} description={home.data.description}>
-  <section class="pt-32 px-6 bg-white">
+  <section class="pt-32 pb-2 px-6 bg-white">
     <div class="max-w-7xl mx-auto">
       <div class="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
         <!-- Left Column - Content -->
-        <div class="space-y-6 p-8 pb-0">
-          <div class="text-4xl">👋</div>
+        <div class="space-y-6 p-8 pb-8">
+          
           <div class="space-y-3">
             <h1 class="text-3xl lg:text-5xl font-thin text-black">
-              Hello! <span class="font-bold">I'm {home.data.name}</span>
+              <span class="font-bold">I'm Vritra</span>
             </h1>
             <div class="flex items-center gap-2 mt-4">
-              <div class="w-40 h-px bg-black"></div>
+              <div class="w-10 h-px bg-black hero-role-line"></div>
               <div class="flex items-center gap-2">
-                <p class="text-lg text-black">{home.data.role}</p>
+                <p class="text-lg text-black">AI Solutions Architect & .NET Developer</p>
                 <span class="text-3xl ml-2">✦</span>
               </div>
             </div>
           </div>
 
           <!-- Description -->
-          <p class="text-base text-black/70 max-w-xl leading-relaxed">
-            {home.data.heroDescription}
+          <p class="text-base text-black/70 max-w-xl leading-relaxed heroDescription">
+            Specialized in crafting scalable, AI-powered cloud-native applications using .NET, Azure OpenAI, and modern cloud architecture for <span class="font-semibold text-black">government and enterprise clients</span>.
           </p>
 
-          <!-- Checkmark List -->
-          <div class="space-y-2">
-            {
-              approach.map((item) => (
-                <div class="flex items-start gap-3">
-                  <svg
-                    class="w-4 h-4 text-black mt-0.5 flex-shrink-0"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                      stroke-width="3.5"
-                      d="M5 13l4 4L19 7"
-                    />
-                  </svg>
-                  <span class="text-sm text-black/80">
-                    {item.title}: {item.description}
-                  </span>
-                </div>
-              ))
-            }
+          <!-- Approach Cards -->
+          <div class="space-y-3 approach-cards">
+            <div class="flex items-start gap-4 p-3 rounded-xl bg-black/5 hover:bg-black/10 transition-all group">
+              <div class="w-10 h-10 rounded-lg bg-black flex items-center justify-center flex-shrink-0">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
+                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10"/>
+                  <path d="m9 12 2 2 4-4"/>
+                </svg>
+              </div>
+              <div>
+                <p class="font-semibold text-black text-sm">Security First</p>
+                <p class="text-xs text-black/60">Every layer is fortified. From data encryption to secure LLM integration.</p>
+              </div>
+            </div>
+            
+            <div class="flex items-start gap-4 p-3 rounded-xl bg-black/5 hover:bg-black/10 transition-all group">
+              <div class="w-10 h-10 rounded-lg bg-black flex items-center justify-center flex-shrink-0">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
+                  <path d="M12 8V4H8"/><rect width="16" height="12" x="4" y="8" rx="2"/><path d="M2 14h2"/><path d="M20 14h2"/><path d="M15 13v2"/><path d="M9 13v2"/>
+                </svg>
+              </div>
+              <div>
+                <p class="font-semibold text-black text-sm">AI-Integrated</p>
+                <p class="text-xs text-black/60">Secure AI capabilities with strict data governance for sensitive environments.</p>
+              </div>
+            </div>
+            
+            <div class="flex items-start gap-4 p-3 rounded-xl bg-black/5 hover:bg-black/10 transition-all group">
+              <div class="w-10 h-10 rounded-lg bg-black flex items-center justify-center flex-shrink-0">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2">
+                  <path d="M3 3v18h18"/><path d="m19 9-5 5-4-4-3 3"/>
+                </svg>
+              </div>
+              <div>
+                <p class="font-semibold text-black text-sm">Enterprise Scale</p>
+                <p class="text-xs text-black/60">Built for millions. Performance-optimized architecture for critical systems.</p>
+              </div>
+            </div>
           </div>
 
           <!-- CTA Buttons -->
-          <div class="flex gap-4 pt-4">
+          <div class="flex gap-4 pt-2 hero-ctas">
             <a
               href="#current-work"
-              class="px-8 py-3.5 bg-black text-white rounded-full font-medium hover:bg-black/90 transition-all inline-flex items-center gap-2"
+              class="px-8 py-3.5 bg-black text-white rounded-full font-medium hover:bg-black/90 transition-all inline-flex items-center gap-2 hover:scale-105"
             >
-              Let's Talk
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10"/>
+              </svg>
+              View Government Project
             </a>
             <a
-              href="/articles"
-              class="px-4 ml-4 py-3.5 bg-transparent text-black border-b border-black font-medium transition-all inline-flex items-center gap-2"
+              href="/contact"
+              class="px-6 py-3.5 bg-transparent text-black border-2 border-black rounded-full font-medium transition-all inline-flex items-center gap-2 hover:bg-black hover:text-white"
             >
-              Read Articles
-              <svg
-                class="w-4 h-4"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
-              </svg>
+              Let's Talk
             </a>
           </div>
         </div>
         <div class="relative hidden lg:block">
           <div class="relative mt-12">
-            <div
-              class="absolute bottom-40 -left-2 bg-black text-white w-35 h-35 rounded-full flex items-center justify-center text-3xl font-semibold shadow-2xl z-0"
-            >
-              <span class="relative">
-                Hello
-                <div
-                  class="absolute -top-8 -left-6 w-20 h-0.5 bg-white transform rotate-45"
-                >
-                </div>
-              </span>
-            </div>
-            <div
-              class="absolute -top-8 -left-8 w-16 h-0.5 bg-black transform -rotate-45 z-0"
-            >
-            </div>
-            <div
-              class="absolute -top-4 -left-10 w-8 h-0.5 bg-black transform -rotate-12 z-0"
-            >
-            </div>
-            <div class="relative aspect-square rounded-2xl overflow-hidde z-10">
+            <div class="image-carousel relative aspect-square rounded-2xl overflow-hidden z-10">
               <img
-                src="/profile.png"
+                src="/personal-gallery/hero-image.png"
                 alt="Is It Vritra"
-                class="w-full h-full object-cover relative z-10"
+                class="carousel-image active w-full h-full object-cover"
+              />
+              <img
+                src="/personal-gallery/2.png"
+                alt="Is It Vritra"
+                class="carousel-image w-full h-full object-cover"
+              />
+              <img
+                src="/personal-gallery/5.png"
+                alt="Is It Vritra"
+                class="carousel-image w-full h-full object-cover"
+              />
+              <img
+                src="/personal-gallery/7.png"
+                alt="Is It Vritra"
+                class="carousel-image w-full h-full object-cover"
               />
             </div>
             <svg
@@ -159,53 +160,115 @@ const latestArticles = allArticles
       </div>
     </div>
   </section>
-  <section class="relative mb-20">
-    <div class="bg-black py-6 transform overflow-hidden">
+  <section class="relative mb-0">
+    <div class="bg-black py-5 overflow-hidden">
       <div class="max-w-7xl mx-auto px-8">
-        <div
-          class="flex flex-wrap items-center justify-center gap-4 md:gap-8 text-white transform skew-y-1"
-        >
-          {
-            skills.map((skill, index) => (
-              <>
-                <span class="text-xs md:text-base font-bold tracking-widest whitespace-nowrap">
-                  {skill}
-                </span>
-                {index < skills.length - 1 && (
-                  <span class="text-lg md:text-xl">✦</span>
-                )}
-              </>
-            ))
-          }
+        <div class="flex flex-wrap items-center justify-center gap-6 md:gap-10 text-white">
+          <!-- Achievement 1 -->
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-white">
+                <circle cx="12" cy="12" r="10"/><path d="M12 2v4"/><path d="M12 18v4"/><path d="m4.93 4.93 2.83 2.83"/><path d="m16.24 16.24 2.83 2.83"/>
+              </svg>
+            </div>
+            <div>
+              <p class="text-xs text-white/50 uppercase tracking-wider">Current</p>
+              <p class="text-sm font-semibold">UN Agency Project</p>
+            </div>
+          </div>
+          
+          <div class="w-0.5 h-8 bg-white/30 hidden md:block"></div>
+          
+          <!-- Achievement 2 -->
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center">
+              <span class="text-xl font-bold">6+</span>
+            </div>
+            <div>
+              <p class="text-xs text-white/50 uppercase tracking-wider">Years</p>
+              <p class="text-sm font-semibold">Experience</p>
+            </div>
+          </div>
+          
+          <div class="w-0.5 h-8 bg-white/30 hidden md:block"></div>
+          
+          <!-- Achievement 3 -->
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-white">
+                <path d="M12 8V4H8"/><rect width="16" height="12" x="4" y="8" rx="2"/><path d="M2 14h2"/><path d="M20 14h2"/><path d="M15 13v2"/><path d="M9 13v2"/>
+              </svg>
+            </div>
+            <div>
+              <p class="text-xs text-white/50 uppercase tracking-wider">AI & GenAI</p>
+              <p class="text-sm font-semibold">Solutions Expert</p>
+            </div>
+          </div>
+          
+          <div class="w-0.5 h-8 bg-white/30 hidden md:block"></div>
+          
+          <!-- Achievement 4 -->
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-white">
+                <path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/>
+              </svg>
+            </div>
+            <div>
+              <p class="text-xs text-white/50 uppercase tracking-wider">AI Tutoring</p>
+              <p class="text-sm font-semibold">Sessions Available</p>
+            </div>
+          </div>
         </div>
       </div>
     </div>
 
     <!-- Social links -->
     <div class="max-w-7xl mx-auto px-8 mt-10">
-      <div class="flex flex-wrap items-center justify-center gap-6 text-xs">
+      <div class="flex flex-wrap items-center justify-center gap-5 text-xs">
         <div class="hidden md:block flex-1 h-px bg-black/10"></div>
 
-        {
-          social.map((link) => (
-            <a
-              href={link.url}
-              class="flex items-center gap-2 text-black/70 hover:text-black transition-colors"
-            >
-              <span class="text-sm">
-                {link.platform === "FACEBOOK" && "📘"}
-                {link.platform === "YOUTUBE" && "📺"}
-                {link.platform === "TWITTER" && "🐦"}
-              </span>
-              <span class="font-medium tracking-wide">{link.platform}</span>
-            </a>
-          ))
-        }
+        <!-- LinkedIn -->
+        <a href="https://linkedin.com/in/isitvritra" target="_blank" class="flex items-center gap-2 text-black/70 hover:text-black transition-colors">
+          <img src="/social-medias/linkedin.png" alt="LinkedIn" class="w-5 h-5 object-contain" />
+          <span class="font-medium tracking-wide">LINKEDIN</span>
+        </a>
+        
+        <!-- GitHub -->
+        <a href="https://github.com/isitvritra" target="_blank" class="flex items-center gap-2 text-black/70 hover:text-black transition-colors">
+          <img src="/social-medias/github.png" alt="GitHub" class="w-5 h-5 object-contain" />
+          <span class="font-medium tracking-wide">GITHUB</span>
+        </a>
+        
+        <!-- Medium -->
+        <a href="https://medium.com/@isitvritra" target="_blank" class="flex items-center gap-2 text-black/70 hover:text-black transition-colors">
+          <img src="/social-medias/medium.png" alt="Medium" class="w-5 h-5 object-contain" />
+          <span class="font-medium tracking-wide">MEDIUM</span>
+        </a>
+        
+        <!-- YouTube -->
+        <a href="https://youtube.com/@isitvritra" target="_blank" class="flex items-center gap-2 text-black/70 hover:text-black transition-colors">
+          <img src="/social-medias/youtube.png" alt="YouTube" class="w-5 h-5 object-contain" />
+          <span class="font-medium tracking-wide">YOUTUBE</span>
+        </a>
+        
+        <!-- Instagram -->
+        <a href="https://instagram.com/isitvritra" target="_blank" class="flex items-center gap-2 text-black/70 hover:text-black transition-colors">
+          <img src="/social-medias/instagram.png" alt="Instagram" class="w-5 h-5 object-contain" />
+          <span class="font-medium tracking-wide">INSTAGRAM</span>
+        </a>
+        
+        <!-- WhatsApp -->
+        <a href="https://wa.me/919286842595" target="_blank" class="flex items-center gap-2 text-black/70 hover:text-black transition-colors">
+          <img src="/social-medias/whatsapp.png" alt="WhatsApp" class="w-5 h-5 object-contain" />
+          <span class="font-medium tracking-wide">WHATSAPP</span>
+        </a>
 
-        <div class="flex items-center gap-2 text-black/70">
-          <span class="text-sm">✉️</span>
-          <span class="font-medium tracking-wide">{email}</span>
-        </div>
+        <!-- Gmail -->
+        <a href="mailto:isitvritra@gmail.com" class="flex items-center gap-2 text-black/70 hover:text-black transition-colors">
+          <img src="/social-medias/gmail.png" alt="Gmail" class="w-5 h-5 object-contain" />
+          <span class="font-medium tracking-wide">GMAIL</span>
+        </a>
 
         <div class="hidden md:block flex-1 h-px bg-black/10"></div>
       </div>
@@ -486,114 +549,271 @@ const latestArticles = allArticles
       </div>
     </section> -->
   </section>
-  <!-- Current Project Section -->
-  <section id="current-work" class="py-24 relative">
-    <div class="max-w-7xl mx-auto px-6 mt-16">
-      <!-- Header with Decorative Elements -->
-      <div class="text-center mb-16 relative">
-        <!-- Diagonal Lines - Top Right -->
-        <div class="absolute right-0 top-0">
-          <svg width="60" height="60" viewBox="0 0 60 60" fill="none">
-            <line x1="10" y1="5" x2="50" y2="45" stroke="black" stroke-width="2"
-            ></line>
-            <line x1="20" y1="5" x2="60" y2="45" stroke="black" stroke-width="2"
-            ></line>
-            <line x1="0" y1="15" x2="40" y2="55" stroke="black" stroke-width="2"
-            ></line>
-            <line
-              x1="10"
-              y1="15"
-              x2="50"
-              y2="55"
-              stroke="black"
-              stroke-width="2"></line>
-          </svg>
-        </div>
-        <div class="absolute left-1/2 -translate-x-1/2 -top-20">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="80"
-            height="80"
-            viewBox="0 0 100 100"
-            fill="none"
-            class="text-black"
-          >
-            <!-- Center Circle -->
-            <circle cx="50" cy="50" r="5" fill="currentColor"></circle>
 
-            <!-- Radiating Lines (Sunburst Pattern) -->
-            <g stroke="currentColor" stroke-width="0.5" opacity="0.6">
-              {/* 360 degrees, 72 lines (every 5 degrees) */}
-              {
-                Array.from({ length: 72 }).map((_, i) => {
-                  const angle = (i * 5 * Math.PI) / 180;
-                  const x1 = 50 + Math.cos(angle) * 8;
-                  const y1 = 50 + Math.sin(angle) * 8;
-                  const x2 = 50 + Math.cos(angle) * 40;
-                  const y2 = 50 + Math.sin(angle) * 40;
-                  return <line x1={x1} y1={y1} x2={x2} y2={y2} />;
-                })
-              }
-            </g>
-          </svg>
+  <!-- Client Testimonial Section -->
+  <section class="py-20 bg-gray-50">
+    <div class="max-w-4xl mx-auto px-6">
+      <div class="text-center mb-12">
+        <p class="text-sm uppercase tracking-widest text-black/40 mb-3">AI Tutoring Sessions</p>
+        <h2 class="text-3xl md:text-4xl font-bold text-black">Client Stories</h2>
+      </div>
+      
+      <div class="bg-white rounded-2xl p-8 md:p-12 shadow-lg border border-gray-100 relative">
+        <!-- Quote Icon -->
+        <div class="absolute -top-6 left-8">
+          <div class="w-12 h-12 bg-black rounded-full flex items-center justify-center">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="white">
+              <path d="M11.192 15.757c0-.88-.23-1.618-.69-2.217-.326-.412-.768-.683-1.327-.812-.55-.128-1.07-.137-1.54-.028-.16-.95.1-1.956.76-3.022.66-1.065 1.515-1.867 2.558-2.403L9.373 5c-.8.396-1.56.898-2.26 1.505-.71.607-1.34 1.305-1.9 2.094s-.98 1.68-1.25 2.69-.346 2.04-.217 3.1c.168 1.4.62 2.52 1.356 3.35.735.84 1.652 1.26 2.748 1.26.965 0 1.766-.29 2.4-.878.628-.576.94-1.365.94-2.368l.002.003zm9.124 0c0-.88-.23-1.618-.69-2.217-.326-.42-.768-.69-1.327-.817-.55-.124-1.07-.13-1.54-.022-.16-.94.09-1.95.75-3.02.66-1.06 1.514-1.86 2.557-2.4L18.49 5c-.8.396-1.555.898-2.26 1.505-.708.607-1.34 1.305-1.894 2.094-.556.79-.97 1.68-1.24 2.69-.273 1-.345 2.04-.217 3.1.165 1.4.615 2.52 1.35 3.35.732.833 1.646 1.25 2.742 1.25.967 0 1.768-.29 2.402-.876.627-.576.942-1.365.942-2.368v.01z"/>
+            </svg>
+          </div>
         </div>
-
-        <h2 class="text-5xl md:text-6xl font-bold mb-4 tracking-tight">
-          CURRENT PROJECT
+        
+        <!-- Sessions Badge -->
+        <div class="absolute -top-4 right-8">
+          <span class="px-3 py-1 bg-black text-white text-xs font-medium rounded-full">10 Sessions</span>
+        </div>
+        
+        <div class="pt-4">
+          <p class="text-lg md:text-xl text-black/80 leading-relaxed mb-8">
+            "I hired Vritra as an AI tutor, and he has proven to be an enthusiastic and dedicated teacher who thoughtfully curates lessons to align with my needs and areas of interest. He is attentive, maintains open communication, and demonstrates flexibility through his use of a wide range of tools for lesson delivery. He also enriches our sessions by sharing fun and interesting facts about the world of AI, which makes the learning process more engaging. His passion, adaptability, and depth of knowledge greatly enhance the learning experience."
+          </p>
+          
+          <div class="flex flex-wrap items-center justify-between gap-4">
+            <div class="flex items-center gap-4">
+              <div class="w-14 h-14 rounded-full overflow-hidden border-2 border-gray-200">
+                <img src="/clients/student-1.jpg" alt="Helen Émilie K" class="w-full h-full object-cover" />
+              </div>
+              <div>
+                <p class="font-semibold text-black">Helen Émilie K, PMP®</p>
+                <p class="text-sm text-black/60">Project Manager | AI Automation Consultant</p>
+                <p class="text-xs text-black/40">Vancouver, British Columbia, Canada</p>
+              </div>
+            </div>
+            
+            <!-- Book Session CTA -->
+            <a href="/contact" class="inline-flex items-center gap-2 px-6 py-3 bg-black text-white font-medium rounded-full hover:bg-black/80 transition-all">
+              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+                <line x1="16" y1="2" x2="16" y2="6"/>
+                <line x1="8" y1="2" x2="8" y2="6"/>
+                <line x1="3" y1="10" x2="21" y2="10"/>
+              </svg>
+              <span>Book a Session</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- Featured Project Showcase Section -->
+  <section id="current-work" class="py-32 relative overflow-hidden bg-black">
+    <!-- Animated Background Elements -->
+    <div class="absolute inset-0 overflow-hidden">
+      <!-- Gradient Orbs - Monochrome -->
+      <div class="absolute top-20 left-10 w-72 h-72 bg-white/5 rounded-full blur-3xl animate-pulse"></div>
+      <div class="absolute bottom-20 right-10 w-96 h-96 bg-white/3 rounded-full blur-3xl animate-pulse" style="animation-delay: 1s;"></div>
+      <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-white/5 rounded-full blur-3xl"></div>
+      
+      <!-- Grid Pattern Overlay -->
+      <div class="absolute inset-0 opacity-5" style="background-image: radial-gradient(circle at 1px 1px, white 1px, transparent 0); background-size: 40px 40px;"></div>
+    </div>
+    
+    <div class="max-w-7xl mx-auto px-6 relative z-10">
+      <!-- Header -->
+      <div class="text-center mb-16">
+        <!-- Confidential Badge -->
+        <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 border border-white/20 text-white/80 text-sm font-medium mb-6 backdrop-blur-sm">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10"/>
+            <path d="m9 12 2 2 4-4"/>
+          </svg>
+          <span>FLAGSHIP PROJECT • CONFIDENTIAL</span>
+        </div>
+        
+        <h2 class="text-5xl md:text-7xl font-black text-white mb-4 tracking-tight">
+          FEATURED <span class="text-white/40">PROJECT</span>
         </h2>
-        <p class="text-base text-black/60 max-w-2xl mx-auto">
-          {currentProject.description}
+        <p class="text-lg text-white/50 max-w-3xl mx-auto leading-relaxed">
+          Currently building next-generation health intelligence infrastructure for a <span class="text-white font-semibold">United Nations Agency</span>. 
+          This AI-powered platform is designed to process real-time data and deliver LLM-driven insights for international health preparedness.
         </p>
       </div>
-
-      <!-- Project Card -->
-      <div class="bg-black text-white rounded-lg overflow-hidden">
-        <div class="flex flex-col md:flex-row items-center md:items-stretch">
-          <!-- Number Indicator -->
-          <div
-            class="bg-black/40 px-8 py-8 md:py-12 flex items-center justify-center border-r border-white/10"
-          >
-            <span class="text-4xl md:text-5xl font-bold text-white/40">1</span>
-          </div>
-
-          <!-- Project Info -->
-          <div class="flex-1 px-8 py-8 md:py-12">
-            <h3 class="text-2xl md:text-3xl font-bold mb-2">
-              {currentProject.name}
-            </h3>
-            <p class="text-white/60 mb-4">
-              {currentProject.client}
-            </p>
-
-            <!-- Technologies -->
-            <div class="flex flex-wrap gap-2">
-              {
-                currentProject.technologies.map((tech) => (
-                  <span class="px-3 py-1 bg-white/10 rounded text-sm text-white/80">
-                    {tech}
-                  </span>
-                ))
-              }
-            </div>
-          </div>
-
-          <!-- Timeline -->
-          <div
-            class="px-8 py-8 md:py-12 flex items-center border-t md:border-t-0 md:border-l border-white/10"
-          >
-            <div class="text-right">
-              <p class="text-xs text-white/40 uppercase tracking-wider mb-1">
-                Duration
-              </p>
-              <p class="text-sm font-medium text-white">
-                {
-                  currentProject.timeline.split("—")[1]?.trim() ||
-                    currentProject.timeline
-                }
-              </p>
+      
+      <!-- Main Project Card -->
+      <div class="relative group">
+        <!-- Glow Effect Behind Card - Monochrome -->
+        <div class="absolute -inset-1 bg-gradient-to-r from-white/20 via-white/10 to-white/20 rounded-3xl blur-xl opacity-30 group-hover:opacity-50 transition-opacity duration-500"></div>
+        
+        <!-- Glass Card -->
+        <div class="relative bg-white/5 backdrop-blur-xl border border-white/10 rounded-3xl overflow-hidden">
+          <!-- Top Accent Bar - White gradient -->
+          <div class="h-1 bg-gradient-to-r from-white/20 via-white/60 to-white/20"></div>
+          
+          <div class="p-8 md:p-12">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+              <!-- Left Column - Project Info -->
+              <div class="space-y-8">
+                <!-- Project Title -->
+                <div>
+                  <div class="flex items-center gap-3 mb-4">
+                    <div class="w-3 h-3 rounded-full bg-green-500 animate-pulse"></div>
+                    <span class="text-green-400 text-sm font-semibold uppercase tracking-wider">Active Development</span>
+                  </div>
+                  <h3 class="text-4xl md:text-5xl font-bold text-white mb-3 leading-tight">
+                    {currentProject.name}
+                  </h3>
+                  <p class="text-xl text-white/50 flex items-center gap-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-white/60">
+                      <path d="M3 12a9 9 0 1 0 18 0a9 9 0 0 0-18 0"/>
+                      <path d="M12 2v4"/>
+                      <path d="M12 18v4"/>
+                      <path d="m4.93 4.93 2.83 2.83"/>
+                      <path d="m16.24 16.24 2.83 2.83"/>
+                      <path d="M2 12h4"/>
+                      <path d="M18 12h4"/>
+                      <path d="m4.93 19.07 2.83-2.83"/>
+                      <path d="m16.24 7.76 2.83-2.83"/>
+                    </svg>
+                    {currentProject.client}
+                  </p>
+                </div>
+                
+                <!-- Key Highlights -->
+                <div class="space-y-4">
+                  <div class="flex items-start gap-4">
+                    <div class="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center flex-shrink-0">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-white">
+                        <path d="M12 8V4H8"/><rect width="16" height="12" x="4" y="8" rx="2"/><path d="M2 14h2"/><path d="M20 14h2"/><path d="M15 13v2"/><path d="M9 13v2"/>
+                      </svg>
+                    </div>
+                    <div>
+                      <h4 class="text-white font-semibold mb-1">AI-Powered Intelligence</h4>
+                      <p class="text-white/40 text-sm">RAG-based LLM integration with Azure OpenAI for intelligent data analysis</p>
+                    </div>
+                  </div>
+                  <div class="flex items-start gap-4">
+                    <div class="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center flex-shrink-0">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-white">
+                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10"/>
+                      </svg>
+                    </div>
+                    <div>
+                      <h4 class="text-white font-semibold mb-1">Enterprise Security</h4>
+                      <p class="text-white/40 text-sm">Government-grade security protocols with end-to-end encryption</p>
+                    </div>
+                  </div>
+                  <div class="flex items-start gap-4">
+                    <div class="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center flex-shrink-0">
+                      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-white">
+                        <path d="M3 3v18h18"/><path d="m19 9-5 5-4-4-3 3"/>
+                      </svg>
+                    </div>
+                    <div>
+                      <h4 class="text-white font-semibold mb-1">Real-Time Processing</h4>
+                      <p class="text-white/40 text-sm">Processing millions of health data points with sub-second latency</p>
+                    </div>
+                  </div>
+                </div>
+                
+                <!-- Tech Stack -->
+                <div>
+                  <p class="text-xs text-white/30 uppercase tracking-widest mb-3">Technology Stack</p>
+                  <div class="flex flex-wrap gap-2">
+                    <span class="px-4 py-2 bg-white/10 backdrop-blur-sm rounded-full text-sm font-medium text-white border border-white/10 hover:bg-white/20 hover:border-white/30 transition-all cursor-default">Python</span>
+                    <span class="px-4 py-2 bg-white/10 backdrop-blur-sm rounded-full text-sm font-medium text-white border border-white/10 hover:bg-white/20 hover:border-white/30 transition-all cursor-default">Django</span>
+                    <span class="px-4 py-2 bg-white/10 backdrop-blur-sm rounded-full text-sm font-medium text-white border border-white/10 hover:bg-white/20 hover:border-white/30 transition-all cursor-default">React</span>
+                    <span class="px-4 py-2 bg-white/10 backdrop-blur-sm rounded-full text-sm font-medium text-white border border-white/10 hover:bg-white/20 hover:border-white/30 transition-all cursor-default">RAG</span>
+                    <span class="px-4 py-2 bg-white/10 backdrop-blur-sm rounded-full text-sm font-medium text-white border border-white/10 hover:bg-white/20 hover:border-white/30 transition-all cursor-default">Llama</span>
+                    <span class="px-4 py-2 bg-white/10 backdrop-blur-sm rounded-full text-sm font-medium text-white border border-white/10 hover:bg-white/20 hover:border-white/30 transition-all cursor-default">PostgreSQL</span>
+                    <span class="px-4 py-2 bg-white/10 backdrop-blur-sm rounded-full text-sm font-medium text-white border border-white/10 hover:bg-white/20 hover:border-white/30 transition-all cursor-default">Azure Services</span>
+                    <span class="px-4 py-2 bg-white/10 backdrop-blur-sm rounded-full text-sm font-medium text-white border border-white/10 hover:bg-white/20 hover:border-white/30 transition-all cursor-default">Vector DB</span>
+                  </div>
+                </div>
+              </div>
+              
+              <!-- Right Column - Progress & Status -->
+              <div class="space-y-8">
+                <!-- Team Collaboration -->
+                <div class="bg-white/5 rounded-2xl p-8 border border-white/10">
+                  <p class="text-xs text-white/30 uppercase tracking-widest mb-6 text-center">Project Team</p>
+                  
+                  <!-- Profile Images Row with Single Line -->
+                  <div class="flex items-center justify-center">
+                    <!-- Your Profile Image -->
+                    <div class="w-20 h-20 rounded-full overflow-hidden border-2 border-white/20 flex-shrink-0">
+                      <img src="/profile.png" alt="Vritra" class="w-full h-full object-cover" />
+                    </div>
+                    
+                    <!-- Single Continuous Line -->
+                    <div class="w-20 h-[2px] bg-white/20 relative overflow-hidden mx-2">
+                      <div class="absolute top-0 left-0 w-6 h-full bg-gradient-to-r from-transparent via-white to-transparent animate-flow-right"></div>
+                    </div>
+                    
+                    <!-- Colleague Profile Image -->
+                    <div class="w-20 h-20 rounded-full overflow-hidden border-2 border-white/20 flex-shrink-0">
+                      <img src="/clients/collegue.png" alt="Isaias Co" class="w-full h-full object-cover" />
+                    </div>
+                  </div>
+                  
+                  <!-- Names Row -->
+                  <div class="flex justify-center gap-16 mt-4">
+                    <div class="text-center">
+                      <p class="text-white text-sm font-medium">Vritra</p>
+                      <p class="text-white/40 text-xs">AI Solutions Architect</p>
+                    </div>
+                    <div class="text-center">
+                      <p class="text-white text-sm font-medium">Isaias Co</p>
+                      <p class="text-white/40 text-xs">Epidemiologist & ML/AI</p>
+                    </div>
+                  </div>
+                </div>
+                
+                <!-- Progress Visualization -->
+                <div class="bg-white/5 rounded-2xl p-6 border border-white/10">
+                  <div class="flex items-center justify-between">
+                    <div>
+                      <p class="text-xs text-white/30 uppercase tracking-widest mb-2">Current Phase</p>
+                      <p class="text-xl font-bold text-white mb-1">{currentProject.phase}</p>
+                      <p class="text-white/50 text-sm">{currentProject.timeline}</p>
+                    </div>
+                    <div class="relative">
+                      <svg class="w-24 h-24 -rotate-90" viewBox="0 0 100 100">
+                        <circle cx="50" cy="50" r="42" fill="none" stroke="white" stroke-opacity="0.1" stroke-width="8"/>
+                        <circle cx="50" cy="50" r="42" fill="none" stroke="white" stroke-width="8" 
+                          stroke-linecap="round" stroke-dasharray="264" stroke-dashoffset={264 - (264 * currentProject.progress / 100)}
+                          class="transition-all duration-1000"/>
+                      </svg>
+                      <div class="absolute inset-0 flex flex-col items-center justify-center">
+                        <span class="text-2xl font-bold text-white">{currentProject.progress}%</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                
+                <!-- Confidentiality Notice -->
+                <div class="flex items-center gap-3 p-4 rounded-xl bg-white/5 border border-white/10">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="text-white/60 flex-shrink-0">
+                    <path d="M12 9v4"/>
+                    <path d="M10.363 3.591l-8.106 13.534a1.914 1.914 0 0 0 1.636 2.871h16.214a1.914 1.914 0 0 0 1.636-2.87L13.637 3.59a1.914 1.914 0 0 0-3.274 0z"/>
+                    <path d="M12 17h.01"/>
+                  </svg>
+                  <p class="text-white/50 text-sm">Due to NDA, detailed project information is confidential. Available for discussion in private consultations.</p>
+                </div>
+              </div>
             </div>
           </div>
         </div>
+      </div>
+      
+      <!-- Government Work CTA -->
+      <div class="text-center mt-16">
+        <p class="text-white/30 text-sm uppercase tracking-widest mb-4">Interested in similar solutions?</p>
+        <a href="/contact" class="group inline-flex items-center gap-3 px-8 py-4 bg-white text-black font-semibold rounded-full hover:bg-white/90 hover:shadow-lg hover:shadow-white/10 transition-all hover:-translate-y-1">
+          <span>Discuss Your Government Project</span>
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="group-hover:translate-x-1 transition-transform">
+            <path d="M5 12h14"/><path d="m12 5 7 7-7 7"/>
+          </svg>
+        </a>
       </div>
     </div>
   </section>
@@ -640,11 +860,11 @@ const latestArticles = allArticles
           About
         </p>
         <h2 class="text-4xl md:text-5xl font-bold mb-6 leading-tight">
-          Full Stack .NET<br />& AI Expert
+          AI Solutions Architect<br />& .NET Developer
         </h2>
         <p class="text-lg text-black/70 max-w-2xl mx-auto mb-8">
-          I craft scalable, AI-powered cloud-native applications with a focus on
-          performance, security, and long-term maintainability.
+          I craft scalable, AI-powered cloud-native applications using Azure OpenAI, RAG, and modern .NET architecture
+          with a focus on performance, security, and long-term maintainability.
         </p>
         <a
           href="/about"
@@ -771,4 +991,499 @@ const latestArticles = allArticles
       </div>
     </div>
   </section>
+
+  <!-- Animation Script -->
+  <script>
+    import { gsap } from 'gsap';
+    import { ScrollTrigger } from 'gsap/ScrollTrigger';
+    import { initSmoothScroll } from '../utils/smooth-scroll';
+
+    // Register plugins
+    gsap.registerPlugin(ScrollTrigger);
+
+    // Check for reduced motion preference
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    // Initialize on DOM load
+    document.addEventListener('DOMContentLoaded', () => {
+      if (prefersReducedMotion) {
+        // Significantly reduce animation complexity for users who prefer reduced motion
+        gsap.globalTimeline.timeScale(20);
+        return;
+      }
+
+      // Initialize smooth scroll
+      initSmoothScroll();
+
+      // ===== HERO SECTION ANIMATIONS =====
+      
+      console.log('🚀 Hero animations starting...');
+
+      // Heading reveal
+      gsap.from('h1', {
+        y: 40,
+        opacity: 0,
+        duration: 0.8,
+        ease: 'power3.out',
+        delay: 0.4,
+        onComplete: () => console.log('✅ Heading animated')
+      });
+
+      // Role line animation
+      gsap.from('.hero-role-line', {
+        width: 0,
+        opacity: 0,
+        duration: 1,
+        ease: 'power2.out',
+        delay: 0.6,
+        onComplete: () => console.log('✅ Role line animated')
+      });
+
+      // Description fade in
+      gsap.from('.heroDescription', {
+        y: 30,
+        opacity: 0,
+        duration: 0.6,
+        delay: 0.8
+      });
+
+      // Approach cards stagger
+      const cards = document.querySelectorAll('.approach-cards > div');
+      console.log(`🎯 Found ${cards.length} approach cards`);
+      gsap.fromTo(cards, 
+        {
+          y: 30,
+          opacity: 0,
+          visibility: 'hidden'
+        },
+        {
+          y: 0,
+          opacity: 1,
+          visibility: 'visible',
+          duration: 0.5,
+          stagger: 0.1,
+          delay: 1,
+          ease: 'power2.out',
+          onComplete: () => console.log('✅ Approach cards animated')
+        }
+      );
+
+      // CTA Buttons with magnetic effect
+      const ctaButtons = document.querySelectorAll('.hero-ctas a');
+      console.log(`🎯 Found ${ctaButtons.length} CTA buttons`);
+      gsap.fromTo(ctaButtons, 
+        { 
+          y: 20, 
+          opacity: 0,
+          visibility: 'hidden'
+        },
+        {
+          y: 0,
+          opacity: 1,
+          visibility: 'visible',
+          duration: 0.6,
+          stagger: 0.15,
+          delay: 1.2,
+          ease: 'back.out(1.5)',
+          onComplete: () => console.log('✅ CTA buttons animated')
+        }
+      );
+
+      // Magnetic hover effect for buttons
+      ctaButtons.forEach(button => {
+        const btn = button as HTMLElement;
+        
+        btn.addEventListener('mouseenter', () => {
+          gsap.to(btn, {
+            scale: 1.05,
+            duration: 0.3,
+            ease: 'power2.out'
+          });
+        });
+
+        btn.addEventListener('mousemove', (e: MouseEvent) => {
+          const rect = btn.getBoundingClientRect();
+          const x = e.clientX - rect.left - rect.width / 2;
+          const y = e.clientY - rect.top - rect.height / 2;
+
+          gsap.to(btn, {
+            x: x * 0.2,
+            y: y * 0.2,
+            duration: 0.3,
+            ease: 'power2.out'
+          });
+        });
+
+        btn.addEventListener('mouseleave', () => {
+          gsap.to(btn, {
+            x: 0,
+            y: 0,
+            scale: 1,
+            duration: 0.5,
+            ease: 'elastic.out(1, 0.5)'
+          });
+        });
+      });
+
+      // Profile image section animations
+      const profileSection = document.querySelector('.relative.hidden.lg\\:block');
+      if (profileSection) {
+        // Hello badge bounce animation
+        const helloBadge = profileSection.querySelector('.absolute.bottom-40');
+        if (helloBadge) {
+          gsap.from(helloBadge, {
+            scale: 0,
+            rotation: 360,
+            duration: 1,
+            ease: 'elastic.out(1, 0.6)',
+            delay: 0.5
+          });
+
+          // Continuous subtle pulse
+          gsap.to(helloBadge, {
+            scale: 1.05,
+            duration: 2,
+            repeat: -1,
+            yoyo: true,
+            ease: 'sine.inOut'
+          });
+        }
+
+        // Decorative lines animation
+        const decorativeLines = profileSection.querySelectorAll('.absolute.w-16, .absolute.w-8');
+        decorativeLines.forEach((line, index) => {
+          gsap.from(line, {
+            scaleX: 0,
+            opacity: 0,
+            duration: 0.8,
+            delay: 0.6 + index * 0.1,
+            ease: 'power2.out'
+          });
+        });
+
+        // Profile image fade in
+        const profileImg = profileSection.querySelector('img');
+        if (profileImg) {
+          gsap.from(profileImg, {
+            scale: 0.8,
+            opacity: 0,
+            duration: 1,
+            ease: 'power3.out',
+            delay: 0.3
+          });
+        }
+
+        // SVG decoration entrance only (no continuous rotation)
+        const svgDecoration = profileSection.querySelector('svg.absolute.-top-12');
+        if (svgDecoration) {
+          gsap.from(svgDecoration, {
+            opacity: 0,
+            duration: 0.8,
+            ease: 'power2.out',
+            delay: 0.8
+          });
+        }
+      }
+
+      // ===== HERO IMAGE CAROUSEL =====
+      
+      const carouselImages = document.querySelectorAll('.carousel-image');
+      let currentIndex = 0;
+      let carouselInterval: number | null = null;
+
+      function rotateImages() {
+        const current = carouselImages[currentIndex];
+        const nextIndex = (currentIndex + 1) % carouselImages.length;
+        const next = carouselImages[nextIndex];
+        
+        // Fade out current image with subtle scale
+        gsap.to(current, {
+          opacity: 0,
+          scale: 1.05,
+          duration: 1,
+          ease: 'power2.inOut',
+          onComplete: () => {
+            current.classList.remove('active');
+          }
+        });
+        
+        // Fade in next image
+        gsap.fromTo(next, 
+          { opacity: 0, scale: 0.95 },
+          { 
+            opacity: 1, 
+            scale: 1, 
+            duration: 1,
+            ease: 'power2.inOut',
+            onStart: () => {
+              next.classList.add('active');
+            }
+          }
+        );
+        
+        currentIndex = nextIndex;
+      }
+
+      // Start auto-rotation every 4 seconds
+      function startCarousel() {
+        carouselInterval = window.setInterval(rotateImages, 4000);
+      }
+
+      function stopCarousel() {
+        if (carouselInterval) {
+          clearInterval(carouselInterval);
+          carouselInterval = null;
+        }
+      }
+
+      // Initialize carousel
+      startCarousel();
+
+      // Pause on hover
+      const carousel = document.querySelector('.image-carousel');
+      if (carousel) {
+        carousel.addEventListener('mouseenter', stopCarousel);
+        carousel.addEventListener('mouseleave', startCarousel);
+      }
+
+      // ===== MARQUEE SECTION =====
+      
+      const marqueeContainer = document.querySelector('.bg-black.py-6');
+      if (marqueeContainer) {
+        const skillsContainer = marqueeContainer.querySelector('.flex.flex-wrap');
+        
+        if (skillsContainer) {
+          // Clone skills for infinite scroll effect
+          const skills = Array.from(skillsContainer.children);
+          skills.forEach(skill => {
+            const clone = skill.cloneNode(true) as HTMLElement;
+            skillsContainer.appendChild(clone);
+          });
+
+          // Sparkles remain static for cleaner appearance
+        }
+      }
+
+      // Social icons bounce on hover
+      const socialLinks = document.querySelectorAll('.flex.items-center.gap-2.text-black\\/70');
+      socialLinks.forEach(link => {
+        link.addEventListener('mouseenter', () => {
+          const icon = link.querySelector('span.text-sm');
+          if (icon) {
+            gsap.to(icon, {
+              y: -5,
+              duration: 0.3,
+              ease: 'power2.out'
+            });
+          }
+        });
+
+        link.addEventListener('mouseleave', () => {
+          const icon = link.querySelector('span.text-sm');
+          if (icon) {
+            gsap.to(icon, {
+              y: 0,
+              duration: 0.3,
+              ease: 'bounce.out'
+            });
+          }
+        });
+      });
+
+      // ===== SERVICES SECTION =====
+      
+      // Section header reveal
+      gsap.from('.text-4xl.lg\\:text-6xl', {
+        scrollTrigger: {
+          trigger: '.text-4xl.lg\\:text-6xl',
+          start: 'top 80%',
+        },
+        y: 60,
+        opacity: 0,
+        duration: 0.8,
+        ease: 'power3.out'
+      });
+
+      // Service cards with 3D tilt effect
+      const serviceCards = document.querySelectorAll('.grid.flex-1 > div');
+      
+      // No entrance animation - cards appear immediately
+
+      // Add 3D tilt hover effect to each card
+      serviceCards.forEach(card => {
+        const cardEl = card as HTMLElement;
+        let isHovering = false;
+
+        cardEl.addEventListener('mouseenter', () => {
+          isHovering = true;
+          gsap.to(cardEl, {
+            scale: 1.03,
+            duration: 0.3,
+            ease: 'power2.out'
+          });
+          // Icon animation removed for cleaner interaction
+        });
+
+        cardEl.addEventListener('mousemove', (e: MouseEvent) => {
+          if (!isHovering) return;
+
+          const rect = cardEl.getBoundingClientRect();
+          const x = e.clientX - rect.left;
+          const y = e.clientY - rect.top;
+          
+          const centerX = rect.width / 2;
+          const centerY = rect.height / 2;
+          
+          const rotateX = ((y - centerY) / centerY) * -8;
+          const rotateY = ((x - centerX) / centerX) * 8;
+
+          gsap.to(cardEl, {
+            rotationX: rotateX,
+            rotationY: rotateY,
+            transformPerspective: 1000,
+            duration: 0.3,
+            ease: 'power2.out'
+          });
+        });
+
+        cardEl.addEventListener('mouseleave', () => {
+          isHovering = false;
+          gsap.to(cardEl, {
+            scale: 1,
+            rotationX: 0,
+            rotationY: 0,
+            transformPerspective: 1000,
+            duration: 0.4,
+            ease: 'power2.out'
+          });
+          // Icon reset removed since icon animation is removed
+        });
+      });
+
+      // ===== CURRENT PROJECT SECTION =====
+      
+      // Sunburst appears with simple fade (no rotation distraction)
+
+      // Diagonal lines draw animation
+      const diagonalLines = document.querySelectorAll('.absolute.right-0.top-0 line');
+      gsap.from(diagonalLines, {
+        scrollTrigger: {
+          trigger: '#current-work',
+          start: 'top 75%',
+        },
+        scaleX: 0,
+        opacity: 0,
+        duration: 0.6,
+        stagger: 0.1,
+        ease: 'power2.out'
+      });
+
+      // Project card slide in (optimized timing)
+      const projectCard = document.querySelector('.bg-black.text-white.rounded-lg');
+      if (projectCard) {
+        gsap.from(projectCard, {
+          scrollTrigger: {
+            trigger: projectCard,
+            start: 'top 80%',
+          },
+          y: 40, // Reduced from -100 for subtler entrance
+          opacity: 0,
+          duration: 0.6, // Faster from 1s
+          ease: 'power3.out'
+        });
+
+        // Technology tags stagger (faster timing)
+        const techTags = projectCard.querySelectorAll('.flex.flex-wrap.gap-2 > span');
+        gsap.from(techTags, {
+          scrollTrigger: {
+            trigger: projectCard,
+            start: 'top 70%',
+          },
+          scale: 0,
+          opacity: 0,
+          duration: 0.4, // Slightly faster
+          stagger: 0.05, // Reduced from 0.1s for snappier feel
+          ease: 'back.out(1.7)'
+        });
+      }
+
+      // ===== STATISTICS SECTION =====
+      
+      const statsSection = document.querySelector('.grid.grid-cols-2.md\\:grid-cols-4.gap-8');
+      if (statsSection) {
+        const statItems = statsSection.querySelectorAll('.text-center');
+        
+        statItems.forEach(statItem => {
+          const valueElement = statItem.querySelector('.text-4xl.md\\:text-5xl');
+          if (valueElement) {
+            const text = valueElement.textContent || '';
+            const numMatch = text.match(/\\d+/);
+            
+            if (numMatch) {
+              const targetValue = parseInt(numMatch[0]);
+              const suffix = text.replace(/\\d+/, '');
+
+              ScrollTrigger.create({
+                trigger: statItem,
+                start: 'top 85%',
+                onEnter: () => {
+                  const obj = { value: 0 };
+                  gsap.to(obj, {
+                    value: targetValue,
+                    duration: 2,
+                    ease: 'power2.out',
+                    onUpdate: () => {
+                      valueElement.textContent = Math.round(obj.value) + suffix;
+                    }
+                  });
+                }
+              });
+            }
+          }
+        });
+
+        // Stat items fade in
+        gsap.from(statItems, {
+          scrollTrigger: {
+            trigger: statsSection,
+            start: 'top 80%',
+          },
+          y: 40,
+          opacity: 0,
+          duration: 0.8,
+          stagger: 0.15,
+          ease: 'power3.out'
+        });
+      }
+
+      // Dot pattern removed - reduces perceived load time
+
+      // ===== GLOBAL PARALLAX EFFECTS =====
+      // Removed excessive parallax on decorative elements to reduce visual noise
+
+      console.log('🎨 Animations initialized!');
+    });
+  </script>
+
+  <!-- Add particle canvas for hero section -->
+  <canvas
+    id="particle-canvas"
+    style="position: fixed; top: 0; left: 0; width: 100%; height: 100vh; pointer-events: none; z-index: 0; opacity: 0.3;"
+  ></canvas>
+
+  <!-- Three.js Particle System -->
+  <script>
+    import { ParticleSystem } from '../utils/three-scene';
+
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    if (!prefersReducedMotion) {
+      window.addEventListener('load', () => {
+        const canvas = document.getElementById('particle-canvas') as HTMLCanvasElement;
+        if (canvas) {
+          new ParticleSystem(canvas);
+        }
+      });
+    }
+  </script>
 </BaseLayout>

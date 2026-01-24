@@ -10,3 +10,38 @@
 }
 
 /* Additional custom styles can go here */
+
+/* Image Carousel Styles */
+.image-carousel {
+    position: relative;
+}
+
+.carousel-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0;
+}
+
+.carousel-image.active {
+    opacity: 1;
+    z-index: 1;
+}
+
+/* Team Connection Animation */
+@keyframes flow-right {
+    0% {
+        transform: translateX(-100%);
+    }
+
+    100% {
+        transform: translateX(600%);
+    }
+}
+
+.animate-flow-right {
+    animation: flow-right 2s ease-in-out infinite;
+}
