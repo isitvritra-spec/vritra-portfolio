@@ -1,0 +1,101 @@
+---
+interface Props {
+    stats: any[];
+}
+
+const { stats } = Astro.props;
+---
+
+<section class="py-24 relative bg-gradient-to-b from-white to-gray-50">
+    <div class="max-w-6xl mx-auto px-6">
+        <!-- Header with Decorative Element -->
+        <div class="text-center mb-16 relative">
+            <!-- Dotted Pattern Decorative Element - Top Left -->
+            <div class="absolute left-0 -top-8">
+                <svg width="80" height="120" viewBox="0 0 80 120" fill="none">
+                    <defs>
+                        <radialGradient
+                            id="dotGradient"
+                            cx="50%"
+                            cy="50%"
+                            r="50%"
+                        >
+                            <stop
+                                offset="0%"
+                                style="stop-color:black;stop-opacity:1"></stop>
+                            <stop
+                                offset="100%"
+                                style="stop-color:black;stop-opacity:0.1"
+                            ></stop>
+                        </radialGradient>
+                    </defs>
+                    {
+                        Array.from({ length: 12 }).map((_, row) => (
+                            <g>
+                                {Array.from({ length: 5 }).map((_, col) => {
+                                    const opacity = 1 - col * 0.2;
+                                    return (
+                                        <circle
+                                            cx={15 + col * 12}
+                                            cy={15 + row * 10}
+                                            r="2.5"
+                                            fill="black"
+                                            opacity={opacity}
+                                        />
+                                    );
+                                })}
+                            </g>
+                        ))
+                    }
+                </svg>
+            </div>
+
+            <p class="text-sm uppercase tracking-widest text-black/50 mb-4">
+                About
+            </p>
+            <h2 class="text-4xl md:text-5xl font-bold mb-6 leading-tight">
+                AI Solutions Architect<br />& .NET Developer
+            </h2>
+            <p class="text-lg text-black/70 max-w-2xl mx-auto mb-8">
+                I craft scalable, AI-powered cloud-native applications using
+                Azure OpenAI, RAG, and modern .NET architecture with a focus on
+                performance, security, and long-term maintainability.
+            </p>
+            <a
+                href="/about"
+                class="inline-flex items-center gap-2 text-base font-medium hover:gap-4 transition-all text-black/80 hover:text-black group"
+            >
+                <span>Learn more</span>
+                <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="20"
+                    height="20"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    class="transition-transform group-hover:translate-x-1"
+                >
+                    <path d="M5 12h14"></path>
+                    <path d="m12 5 7 7-7 7"></path>
+                </svg>
+            </a>
+        </div>
+
+        <!-- Stats Grid -->
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+            {
+                stats.map((stat) => (
+                    <div class="text-center">
+                        <div class="text-4xl md:text-5xl font-bold mb-2 text-black">
+                            {stat.value}
+                        </div>
+                        <div class="text-sm text-black/60 uppercase tracking-wider">
+                            {stat.label}
+                        </div>
+                    </div>
+                ))
+            }
+        </div>
+    </div>
+</section>

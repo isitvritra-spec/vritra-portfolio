@@ -1,0 +1,241 @@
+---
+interface Props {
+    approach: any[];
+}
+
+const { approach } = Astro.props;
+---
+
+<section class="pt-32 pb-2 px-6 bg-white">
+    <div class="max-w-7xl mx-auto">
+        <div class="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+            <!-- Left Column - Content -->
+            <div class="space-y-6 p-8 pb-8">
+                <div class="space-y-3">
+                    <h1 class="text-3xl lg:text-5xl font-thin text-black">
+                        <span class="font-bold">I'm Vritra</span>
+                    </h1>
+                    <div class="flex items-center gap-2 mt-4">
+                        <div class="w-10 h-px bg-black hero-role-line"></div>
+                        <div class="flex items-center gap-2">
+                            <p class="text-lg text-black">
+                                AI Solutions Architect & .NET Developer
+                            </p>
+                            <span class="text-3xl ml-2">✦</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Description -->
+                <p
+                    class="text-base text-black/70 max-w-xl leading-relaxed heroDescription"
+                >
+                    Specialized in crafting scalable, AI-powered cloud-native
+                    applications using .NET, Azure OpenAI, and modern cloud
+                    architecture for <span class="font-semibold text-black"
+                        >government and enterprise clients</span
+                    >.
+                </p>
+
+                <!-- Approach Cards -->
+                <div class="space-y-3 approach-cards">
+                    <div
+                        class="flex items-start gap-4 p-3 rounded-xl bg-black/5 hover:bg-black/10 transition-all group"
+                    >
+                        <div
+                            class="w-10 h-10 rounded-lg bg-black flex items-center justify-center flex-shrink-0"
+                        >
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="20"
+                                height="20"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="white"
+                                stroke-width="2"
+                            >
+                                <path
+                                    d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10"
+                                ></path>
+                                <path d="m9 12 2 2 4-4"></path>
+                            </svg>
+                        </div>
+                        <div>
+                            <p class="font-semibold text-black text-sm">
+                                Security First
+                            </p>
+                            <p class="text-xs text-black/60">
+                                Every layer is fortified. From data encryption
+                                to secure LLM integration.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div
+                        class="flex items-start gap-4 p-3 rounded-xl bg-black/5 hover:bg-black/10 transition-all group"
+                    >
+                        <div
+                            class="w-10 h-10 rounded-lg bg-black flex items-center justify-center flex-shrink-0"
+                        >
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="20"
+                                height="20"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="white"
+                                stroke-width="2"
+                            >
+                                <path d="M12 8V4H8"></path><rect
+                                    width="16"
+                                    height="12"
+                                    x="4"
+                                    y="8"
+                                    rx="2"></rect><path d="M2 14h2"></path><path
+                                    d="M20 14h2"></path><path d="M15 13v2"
+                                ></path><path d="M9 13v2"></path>
+                            </svg>
+                        </div>
+                        <div>
+                            <p class="font-semibold text-black text-sm">
+                                AI-Integrated
+                            </p>
+                            <p class="text-xs text-black/60">
+                                Secure AI capabilities with strict data
+                                governance for sensitive environments.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div
+                        class="flex items-start gap-4 p-3 rounded-xl bg-black/5 hover:bg-black/10 transition-all group"
+                    >
+                        <div
+                            class="w-10 h-10 rounded-lg bg-black flex items-center justify-center flex-shrink-0"
+                        >
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="20"
+                                height="20"
+                                viewBox="0 0 24 24"
+                                fill="none"
+                                stroke="white"
+                                stroke-width="2"
+                            >
+                                <path d="M3 3v18h18"></path><path
+                                    d="m19 9-5 5-4-4-3 3"></path>
+                            </svg>
+                        </div>
+                        <div>
+                            <p class="font-semibold text-black text-sm">
+                                Enterprise Scale
+                            </p>
+                            <p class="text-xs text-black/60">
+                                Built for millions. Performance-optimized
+                                architecture for critical systems.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CTA Buttons -->
+                <div class="flex gap-4 pt-2 hero-ctas">
+                    <a
+                        href="#current-work"
+                        class="px-8 py-3.5 bg-black text-white rounded-full font-medium hover:bg-black/90 transition-all inline-flex items-center gap-2 hover:scale-105"
+                    >
+                        <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            width="18"
+                            height="18"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="2"
+                        >
+                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10"
+                            ></path>
+                        </svg>
+                        View Government Project
+                    </a>
+                    <a
+                        href="/contact"
+                        class="px-6 py-3.5 bg-transparent text-black border-2 border-black rounded-full font-medium transition-all inline-flex items-center gap-2 hover:bg-black hover:text-white"
+                    >
+                        Let's Talk
+                    </a>
+                </div>
+            </div>
+            <div class="relative hidden lg:block">
+                <div class="relative mt-12">
+                    <div
+                        class="image-carousel relative aspect-square rounded-2xl overflow-hidden z-10"
+                    >
+                        <img
+                            src="/personal-gallery/hero-image.png"
+                            alt="Is It Vritra"
+                            class="carousel-image active w-full h-full object-cover"
+                        />
+                        <img
+                            src="/personal-gallery/2.png"
+                            alt="Is It Vritra"
+                            class="carousel-image w-full h-full object-cover"
+                        />
+                        <img
+                            src="/personal-gallery/5.png"
+                            alt="Is It Vritra"
+                            class="carousel-image w-full h-full object-cover"
+                        />
+                        <img
+                            src="/personal-gallery/7.png"
+                            alt="Is It Vritra"
+                            class="carousel-image w-full h-full object-cover"
+                        />
+                    </div>
+                    <svg
+                        class="absolute -top-12 -right-12 w-32 h-32 text-black/20"
+                        viewBox="0 0 100 100"
+                    >
+                        <path
+                            d="M10 50 Q 30 10, 50 50 T 90 50"
+                            stroke="currentColor"
+                            stroke-width="2"
+                            fill="none"></path>
+                        <path
+                            d="M20 70 L 80 30"
+                            stroke="currentColor"
+                            stroke-width="2"></path>
+                    </svg>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+    .carousel-image {
+        position: absolute;
+        inset: 0;
+        opacity: 0;
+        transition: opacity 1s ease-in-out;
+    }
+    .carousel-image.active {
+        opacity: 1;
+    }
+</style>
+
+<script>
+    // Hero Image Carousel Logic
+    document.addEventListener("DOMContentLoaded", () => {
+        const images = document.querySelectorAll(".carousel-image");
+        let currentIndex = 0;
+
+        if (images.length > 0) {
+            setInterval(() => {
+                images[currentIndex].classList.remove("active");
+                currentIndex = (currentIndex + 1) % images.length;
+                images[currentIndex].classList.add("active");
+            }, 5000);
+        }
+    });
+</script>
