@@ -51,7 +51,7 @@ const services = [
             <p>Tell me about your project and I'll get back within 24 hours.</p>
           </div>
           
-          <form action="https://formspree.io/f/xovgbdaa" method="POST" class="contact-form">
+          <form id="contact-form" class="contact-form">
             <div class="form-row">
               <div class="form-group">
                 <label for="name">Name</label>
@@ -70,7 +70,7 @@ const services = [
             
             <div class="form-group">
               <label for="service">Service</label>
-              <select id="service" name="service">
+              <select id="service" name="service" required>
                 <option value="">Select a service</option>
                 <option value="full-project">Full Project Development</option>
                 <option value="architecture">Architecture Review</option>
@@ -84,9 +84,12 @@ const services = [
               <textarea id="message" name="message" rows="5" required placeholder="Tell me about your project, timeline, and goals..."></textarea>
             </div>
             
-            <button type="submit" class="submit-btn">
-              <span>Send Message</span>
-              <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+            <div id="form-message" class="form-message" style="display: none;"></div>
+            
+            <button type="submit" class="submit-btn" id="submit-btn">
+              <span id="btn-text">Send Message</span>
+              <svg id="btn-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+              <svg id="btn-loader" style="display: none;" xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12a9 9 0 1 1-6.219-8.56"/></svg>
             </button>
           </form>
         </div>
@@ -185,6 +188,107 @@ const services = [
     </section>
   </main>
 </BaseLayout>
+
+<script>
+  // Types
+  interface FormData {
+    name: string;
+    email: string;
+    company: string;
+    service: string;
+    message: string;
+  }
+
+  interface APIResponse {
+    success: boolean;
+    message: string;
+  }
+
+  // DOM Elements
+  const form = document.getElementById('contact-form') as HTMLFormElement;
+  const submitBtn = document.getElementById('submit-btn') as HTMLButtonElement;
+  const btnText = document.getElementById('btn-text') as HTMLSpanElement;
+  const btnIcon = document.getElementById('btn-icon') as SVGElement;
+  const btnLoader = document.getElementById('btn-loader') as SVGElement;
+  const formMessage = document.getElementById('form-message') as HTMLDivElement;
+
+  // Helper functions
+  const setButtonLoading = (isLoading: boolean): void => {
+    submitBtn.disabled = isLoading;
+    btnText.textContent = isLoading ? 'Sending...' : 'Send Message';
+    btnIcon.style.display = isLoading ? 'none' : 'inline-block';
+    btnLoader.style.display = isLoading ? 'inline-block' : 'none';
+  };
+
+  const showMessage = (message: string, type: 'success' | 'error'): void => {
+    formMessage.textContent = message;
+    formMessage.className = `form-message ${type}`;
+    formMessage.style.display = 'block';
+    formMessage.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  };
+
+  const getFormData = (): FormData => {
+    const formData = new FormData(form);
+    return {
+      name: formData.get('name') as string,
+      email: formData.get('email') as string,
+      company: formData.get('company') as string,
+      service: formData.get('service') as string,
+      message: formData.get('message') as string,
+    };
+  };
+
+  const validateFormData = (data: FormData): boolean => {
+    return !!(data.name && data.email && data.service && data.message);
+  };
+
+  const sendEmail = async (data: FormData): Promise<APIResponse> => {
+    const response = await fetch('/api/send-email', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data),
+    });
+    return response.json();
+  };
+
+  // Form submission handler
+  const handleSubmit = async (e: Event): Promise<void> => {
+    e.preventDefault();
+
+    const data = getFormData();
+
+    // Validate required fields
+    if (!validateFormData(data)) {
+      showMessage('Please fill in all required fields.', 'error');
+      return;
+    }
+
+    // Show loading state
+    setButtonLoading(true);
+    formMessage.style.display = 'none';
+
+    try {
+      const result = await sendEmail(data);
+
+      if (result.success) {
+        showMessage(result.message, 'success');
+        form.reset();
+      } else {
+        showMessage(result.message || 'An error occurred while sending your message.', 'error');
+      }
+    } catch (error) {
+      showMessage(
+        'Sorry, there was an error sending your message. Please try again or email directly at isitvritra@gmail.com.',
+        'error'
+      );
+    } finally {
+      setButtonLoading(false);
+    }
+  };
+
+  // Event listener
+  form.addEventListener('submit', handleSubmit);
+</script>
 
 <style>
   .contact-page {
@@ -676,5 +780,57 @@ const services = [
     .service-card h3 {
       font-size: 1.25rem;
     }
+  }
+
+  /* Form Messages */
+  .form-message {
+    padding: 1rem;
+    border-radius: 12px;
+    margin-bottom: 1.25rem;
+    font-size: 0.9375rem;
+    line-height: 1.5;
+    animation: slideIn 0.3s ease;
+  }
+
+  .form-message.success {
+    background-color: #d1fae5;
+    color: #065f46;
+    border: 1px solid #6ee7b7;
+  }
+
+  .form-message.error {
+    background-color: #fee2e2;
+    color: #991b1b;
+    border: 1px solid #fca5a5;
+  }
+
+  @keyframes slideIn {
+    from {
+      opacity: 0;
+      transform: translateY(-10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes spin {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  #btn-loader {
+    animation: spin 1s linear infinite;
+  }
+
+  .submit-btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+
+  .submit-btn:disabled:hover {
+    transform: none;
   }
 </style>
