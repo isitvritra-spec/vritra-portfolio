@@ -22,7 +22,7 @@ social:
   - platform: "TWITTER"
     url: "#"
 
-email: "isitvritra@gmail.com"
+email: "info@isitvritra.com"
 whatsapp: "+919286842595"
 location: "Roaming around the world"
 
